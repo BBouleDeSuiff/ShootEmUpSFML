@@ -10,7 +10,6 @@ class Object
 
         Vector2f position;
         Vector2f scale;
-        Vector2f direction;
         float angle;
         float speed;
         //SphereCollider collider;
