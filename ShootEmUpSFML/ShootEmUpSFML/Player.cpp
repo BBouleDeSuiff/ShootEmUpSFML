@@ -1,15 +1,13 @@
 #include "Player.h"
 
-Player:: Player(Vector2f _position, Vector2f _scale, Vector2f _direction, float _angle, float _speed, int _life, PlayerNumber _player) :Object(_position, _scale, _direction, _angle, _speed)
+Player:: Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player) :Object(_position, _scale, _angle, _speed)
 {
     player = _player;
     life = 1;
 }
 
 void Player:: Update(float time) {
-    
     Controls(player);
-
 }
 
 void Player:: Controls(PlayerNumber playerNumber) {
@@ -37,9 +35,4 @@ void Player:: UpdatePlayerPos(Keyboard::Key leftKey, Keyboard::Key rightKey, Key
     else if (sf::Keyboard::isKeyPressed(upKey)) {
         this->position.y += 0.1f;
     }
-}
-
-
-main() {
-
 }

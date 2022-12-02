@@ -17,7 +17,7 @@ class Object
 
         virtual void Update(float time);
 
-        Object(Vector2f _position, Vector2f _scale, Vector2f _direction, float _angle, float _speed);
+        Object(Vector2f _position, Vector2f _scale, float _angle, float _speed);
 
 };
 
