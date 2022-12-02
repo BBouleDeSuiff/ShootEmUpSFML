@@ -8,10 +8,9 @@ enum PlayerNumber {
 
 class Player : public Object
 {
-	int life;
-
-    PlayerNumber player;
     public:
+	    int life;
+        PlayerNumber player;
         void Update(float time);
         void Controls(float time, PlayerNumber playerNumber);
         void UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key rightKey, Keyboard::Key downKey, Keyboard::Key upKey);

@@ -33,9 +33,12 @@ void Game::Update()
         }
         playerOne->Update(time);
         playerTwo->Update(time);
-        for (Object& enemy : enemies) {
+
+        for (Enemy &enemy : enemies)
+        {
             enemy.Update(time);
         }
+
         window.clear();
         // Whatever I want to draw goes here
 
