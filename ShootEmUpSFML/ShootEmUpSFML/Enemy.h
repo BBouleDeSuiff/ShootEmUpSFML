@@ -1,16 +1,12 @@
 #pragma once
-#include "Object.h"
-
+#include "Player.h"
 class Enemy : public Object
 {
-    int life;
-    CircleShape shape;
+public:
+	Player* playerOne;
+	Player* playerTwo;
 
-    public:
-        void Update(float time);
-        void UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key rightKey, Keyboard::Key downKey, Keyboard::Key upKey);
-
-    Enemy(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life);
-
+	Enemy(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& p1, Player& p2);
+	void Update(float time);
 };
 

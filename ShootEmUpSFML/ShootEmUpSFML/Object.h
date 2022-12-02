@@ -1,6 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-//#include "SphereCollider.h"
+#include "SphereCollider.h"
 using namespace sf;
 
 
@@ -13,8 +13,7 @@ class Object
         Vector2f scale;
         float angle;
         float speed;
-
-        //SphereCollider collider;
+        SphereCollider collider;
 
         virtual void Update(float time);
 
