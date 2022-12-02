@@ -13,6 +13,7 @@ class Game
 		Line* line;
 		std::list<Object> enemies;
 		sf::RenderWindow window;
+		sf::Clock clock;
 
 	public :
 		int score;
