@@ -5,8 +5,8 @@ Game::Game()
 {
 	score = 0;
     time = clock.getElapsedTime().asSeconds();
-	playerOne = new Player(sf::Vector2f(50, 100), sf::Vector2f(10, 10), 0., 3., 1, PlayerNumber::PLAYER1);
-	playerTwo = new Player(sf::Vector2f(180, 100), sf::Vector2f(10, 10), 0, 3,1, PlayerNumber::PLAYER2);
+	playerOne = new Player(sf::Vector2f(50, 100), sf::Vector2f(10, 10), 0., 3., 1, PlayerNumber::PLAYER1, Color::Blue);
+	playerTwo = new Player(sf::Vector2f(180, 100), sf::Vector2f(10, 10), 0, 3,1, PlayerNumber::PLAYER2, Color::Red);
     line = new Line();
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
@@ -22,7 +22,7 @@ void Game::Update()
     // Game loop
     while (window.isOpen()) {
         time = clock.getElapsedTime().asSeconds();
-        std::cout << time << std::endl;
+        //std::cout << time << std::endl;
         clock.restart();
         sf::Event event;
         while (window.pollEvent(event)) {

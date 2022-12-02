@@ -11,7 +11,7 @@ class Game
 		float time; //Delta time between two frames
 		Object* playerOne;
 		Object* playerTwo;
-		Line line;
+		Line* line;
 		std::list<Enemy> enemies;
 		sf::RenderWindow window;
 		sf::Clock clock;
