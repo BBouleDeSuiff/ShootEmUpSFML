@@ -6,5 +6,6 @@ Object::Object(Vector2f _position, Vector2f _scale, float _angle, float _speed) 
 	scale = _scale;
 	angle = _angle;
 	speed = _speed;
+	collider = SphereCollider(position, scale.x);
 }
 

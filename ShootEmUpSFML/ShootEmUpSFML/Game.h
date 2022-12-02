@@ -2,6 +2,7 @@
 #include "Object.h"
 #include "Player.h"
 #include "Line.h"
+#include "Enemy.h"
 #include <list>
 
 class Game
@@ -11,7 +12,7 @@ class Game
 		Object* playerOne;
 		Object* playerTwo;
 		Line line;
-		std::list<Object> enemies;
+		std::list<Enemy> enemies;
 		sf::RenderWindow window;
 
 	public :

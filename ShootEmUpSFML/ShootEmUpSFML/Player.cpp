@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player:: Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player) :Object(_position, _scale, _angle, _speed)
+Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player) :Object(_position, _scale, _angle, _speed)
 {
     player = _player;
     life = 1;
