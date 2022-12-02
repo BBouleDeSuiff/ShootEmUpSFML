@@ -5,8 +5,8 @@ Game::Game()
 {
 	score = 0;
     time = clock.getElapsedTime().asSeconds();
-	playerOne = new Player(sf::Vector2f(50, 100), sf::Vector2f(10, 10), 0., 3., 1, PlayerNumber::PLAYER1, Color::Blue);
-	playerTwo = new Player(sf::Vector2f(180, 100), sf::Vector2f(10, 10), 0, 3,1, PlayerNumber::PLAYER2, Color::Red);
+	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
+	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
     line = new Line();
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
@@ -25,12 +25,12 @@ void Game::Update()
         //std::cout << time << std::endl;
         clock.restart();
         sf::Event event;
-        while (window.pollEvent(event)) {
-            // Process any input event here
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
+    while (window.pollEvent(event))
+    {
+        //"close requested" event: we close the window
+        if (event.type == sf::Event::Closed)
+            window.close();
+    }
         playerOne->Update(time);
         playerTwo->Update(time);
 
@@ -39,9 +39,13 @@ void Game::Update()
             enemy.Update(time);
         }
 
-        window.clear();
+        window.clear(sf::Color::Black);
         // Whatever I want to draw goes here
+        playerOne->Draw(window);
+        playerTwo->Draw(window);
 
+        RectangleShape testRectangle;
+        window.draw(testRectangle);
         window.display();
     }
 }

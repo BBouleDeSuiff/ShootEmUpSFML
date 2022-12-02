@@ -9,8 +9,8 @@ class Game
 {
 	private :
 		float time; //Delta time between two frames
-		Object* playerOne;
-		Object* playerTwo;
+		Player* playerOne;
+		Player* playerTwo;
 		Line* line;
 		std::list<Enemy> enemies;
 		sf::RenderWindow window;
