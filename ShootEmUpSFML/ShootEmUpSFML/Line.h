@@ -2,7 +2,8 @@
 class Line
 {
 	public :
-		Line();
 		~Line();
+private :
+	bool isActive;
 };
 

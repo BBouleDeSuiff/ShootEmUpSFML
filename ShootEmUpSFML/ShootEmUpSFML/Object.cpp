@@ -8,3 +8,6 @@ Object::Object(Vector2f _position, Vector2f _scale, float _angle, float _speed) 
 	speed = _speed;
 }
 
+void Object::Update(float time)
+{
+}

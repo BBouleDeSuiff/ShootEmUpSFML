@@ -6,6 +6,7 @@ Game::Game()
 	time = 0;
 	playerOne = new Player(sf::Vector2f(50, 100), sf::Vector2f(10, 10), 0., 3., 1, PlayerNumber::PLAYER1);
 	playerTwo = new Player(sf::Vector2f(180, 100), sf::Vector2f(10, 10), 0, 3,1, PlayerNumber::PLAYER2);
+    line = new Line();
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
 
