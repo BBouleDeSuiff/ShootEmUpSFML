@@ -2,24 +2,14 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include "Game.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "ChronoSpacer");
-    // Initialise everything below
-    // Game loop
-    while (window.isOpen()) {
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            // Process any input event here
-            if (event.type == sf::Event::Closed) {
-                window.close();
-            }
-        }
-        window.clear();
-        // Whatever I want to draw goes here
-        window.display();
-    }
+	Game game;
+
+	//Start game
+	game.Update();
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage

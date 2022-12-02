@@ -1,5 +1,6 @@
 #pragma once
 #include "Object.h"
+#include "Player.h"
 #include "Line.h"
 #include <list>
 
@@ -7,10 +8,10 @@ class Game
 {
 	private :
 		float time; //Delta time between two frames
-		/*Object playerOne;
-		Object playerTwo;
+		Object* playerOne;
+		Object* playerTwo;
 		Line line;
-		std::list<Object> enemies;*/
+		std::list<Object> enemies;
 		sf::RenderWindow window;
 
 	public :
