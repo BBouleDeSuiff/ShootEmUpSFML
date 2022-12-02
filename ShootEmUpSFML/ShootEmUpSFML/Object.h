@@ -13,6 +13,7 @@ class Object
         Vector2f scale;
         float angle;
         float speed;
+
         //SphereCollider collider;
 
         virtual void Update(float time);
