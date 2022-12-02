@@ -1,16 +1,21 @@
 #include "Player.h"
 
-Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player) :Object(_position, _scale, _angle, _speed)
+Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player, CircleShape _triangle, Color _color) :Object(_position, _scale, _angle, _speed)
 {
     player = _player;
     life = 1;
+    triangle = _triangle;
+    triangle.setPointCount(3);
+    triangle.setOutlineThickness(3);
+    triangle.setOutlineColor(_color);
+    color = _color;
 }
 
-void Player:: Update(float time) {
+void Player::Update(float time) {
     Controls(time, player);
 }
 
-void Player:: Controls(float time, PlayerNumber playerNumber) {
+void Player::Controls(float time, PlayerNumber playerNumber) {
     switch (playerNumber) {
         case PlayerNumber::PLAYER1:
             UpdatePlayerPos(time, Keyboard::Q, Keyboard::D, Keyboard::S, Keyboard::Z);
@@ -21,7 +26,7 @@ void Player:: Controls(float time, PlayerNumber playerNumber) {
     }
 }
 
-void Player:: UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key rightKey, Keyboard::Key downKey, Keyboard::Key upKey) {
+void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key rightKey, Keyboard::Key downKey, Keyboard::Key upKey) {
     this->position;
     if (sf::Keyboard::isKeyPressed(leftKey)) {
         this->position.x += -1 * this->speed * time;
@@ -39,4 +44,8 @@ void Player:: UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key r
         this->position.y += 1 * this->speed * time;
         this->angle = 180;
     }
+}
+void Player::Draw() {
+    this->triangle.setPosition(this->position);
+    this->triangle.setRotation(this->angle);
 }
