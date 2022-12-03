@@ -9,6 +9,10 @@ Object::Object(Vector2f _position, Vector2f _scale, float _angle, float _speed){
 	collider = SphereCollider(position, scale.x);
 }
 
+void Object::Draw(RenderWindow& window)
+{
+}
+
 void Object::Update(float time)
 {
 }

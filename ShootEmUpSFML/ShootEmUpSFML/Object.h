@@ -19,5 +19,6 @@ class Object
 
         Object(Vector2f _position, Vector2f _scale, float _angle, float _speed);
 
+        virtual void Draw(RenderWindow& window);
 };
 
