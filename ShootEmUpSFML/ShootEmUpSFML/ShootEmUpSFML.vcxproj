@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assassin.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LineCollider.cpp" />
@@ -140,13 +141,16 @@
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShootEmUpSFML.cpp" />
+    <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assassin.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LineCollider.h" />
     <ClInclude Include="Planet.h" />
+    <ClInclude Include="Soldier.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
