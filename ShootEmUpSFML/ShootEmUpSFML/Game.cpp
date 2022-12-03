@@ -7,6 +7,7 @@ Game::Game()
     time = clock.getElapsedTime().asSeconds();
 	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
 	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
+    planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line();
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
@@ -33,6 +34,7 @@ void Game::Update()
     }
         playerOne->Update(time);
         playerTwo->Update(time);
+        planet->Update(time);
 
         for (Enemy &enemy : enemies)
         {
@@ -43,9 +45,8 @@ void Game::Update()
         // Whatever I want to draw goes here
         playerOne->Draw(window);
         playerTwo->Draw(window);
+        planet->AnimateAndDraw(window);
 
-        RectangleShape testRectangle;
-        window.draw(testRectangle);
         window.display();
     }
 }
