@@ -1,10 +1,8 @@
 #include "Line.h"
 
-Line::Line()
-{
-	isActive = false;
+Line::Line() {
+	isActive = false; 
 }
-
-Line::~Line()
+void Line::Update(sf::Vector2f& playerOne, sf::Vector2f& playerTwo)
 {
 }
