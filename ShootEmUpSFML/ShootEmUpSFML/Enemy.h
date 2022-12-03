@@ -1,12 +1,22 @@
 #pragma once
 #include "Player.h"
+#include "Planet.h"
+
 class Enemy : public Object
 {
-public:
-	Player* playerOne;
-	Player* playerTwo;
+	public:
+		Player* playerOne;
+		Player* playerTwo;
+		Planet* planet;
 
-	Enemy(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& p1, Player& p2);
-	void Update(float time);
+		Object* target;
+		Vector2f direction;
+
+		CircleShape shape;
+
+		void Update(float time);
+		void Draw(RenderWindow& window);
+
+		Enemy(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet);
 };
 

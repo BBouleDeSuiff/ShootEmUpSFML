@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include<cmath>
 #include "SphereCollider.h"
 using namespace sf;
 
