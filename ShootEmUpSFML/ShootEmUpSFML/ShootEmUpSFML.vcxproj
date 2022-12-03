@@ -137,6 +137,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LineCollider.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShootEmUpSFML.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LineCollider.h" />
+    <ClInclude Include="Planet.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
