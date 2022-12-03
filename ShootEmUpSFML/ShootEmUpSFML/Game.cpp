@@ -8,7 +8,7 @@ Game::Game()
 	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
 	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
-    line = new Line();
+    line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
 
@@ -26,15 +26,16 @@ void Game::Update()
         //std::cout << time << std::endl;
         clock.restart();
         sf::Event event;
-    while (window.pollEvent(event))
-    {
-        //"close requested" event: we close the window
-        if (event.type == sf::Event::Closed)
-            window.close();
-    }
+        while (window.pollEvent(event))
+        {
+            //"close requested" event: we close the window
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
         playerOne->Update(time);
         playerTwo->Update(time);
         planet->Update(time);
+        line->Update(event);
 
         for (Enemy &enemy : enemies)
         {
@@ -45,6 +46,7 @@ void Game::Update()
         // Whatever I want to draw goes here
         playerOne->Draw(window);
         playerTwo->Draw(window);
+        line->Draw(window);
         planet->AnimateAndDraw(window);
 
         window.display();
