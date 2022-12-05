@@ -18,7 +18,7 @@ class Game
 
 		std::list<Enemy*> enemies;
 		int enemiesNumber = 1; // Number of enemies per wave
-		const float spawnMargin = 20; // How far enemies spawn outside of screen
+		const float spawnMargin = 10; // How far enemies spawn outside of screen
 		float timer = 0;
 
 		Line* line;
@@ -33,6 +33,7 @@ class Game
 		~Game();
 
 		void StartEnemyWaves();
+		void DrawEnemies();
 		void Update();
 };
 

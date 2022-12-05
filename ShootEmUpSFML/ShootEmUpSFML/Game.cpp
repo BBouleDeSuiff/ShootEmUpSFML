@@ -2,8 +2,12 @@
 #include <iostream>
 
 sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
-    srand(1);
-    int randomSide = rand() % 1 + 0;
+    srand(time(NULL));
+    int randomSide;
+    for (int i=0; i < 10; i++) {
+        randomSide = rand() % 1 + 0;
+        std::cout << rand() << std::endl;
+    }
 
     int *choices;
     int x;
@@ -11,27 +15,30 @@ sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
 
     switch (randomSide) {
         case 0:
-            srand(1);
             choices = new int[2] { (0 - spawnMargin), (800 + spawnMargin) };
             x = choices[rand() % 1 + 0];
-            srand(1);
             y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
+
+            std::cout << "x ="<< x << std::endl;
+            std::cout << "y =" << y << std::endl;
+
             return(*(new Vector2f(x, y)));
         case 1:
-            srand(1);
             choices = new int[2] { 0 - spawnMargin, 600 + spawnMargin };
             x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
-            srand(1);
             y = choices[rand() % 1 + 0]; 
+
+            std::cout << "x =" << x << std::endl;
+            std::cout << "y =" << y << std::endl;
+
             return(*(new Vector2f(x, y)));
     }
 }
 
 
 void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, int numberOfEnemies, int spawnMargin) {
-    srand(1);
-    int randInt = rand() % 10 + 1;
     for (int i = 0; i < numberOfEnemies; i++) {
+        int randInt = rand() % 10 + 1;
         if (randInt <= 8)
             enemyLists.push_back(new Soldier(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, 100, playerOne, playerTwo, planet));
         else
@@ -47,6 +54,13 @@ void Game::StartEnemyWaves() {
         std::cout << enemies.size() << std::endl;
         enemiesNumber++;
         timer = 0;
+    }
+}
+
+void Game::DrawEnemies() {
+    for (Enemy* enemy : enemies)
+    {
+        enemy->Draw(window);
     }
 }
 
@@ -98,6 +112,7 @@ void Game::Update()
         playerTwo->Draw(window);
         line->Draw(window);
         planet->AnimateAndDraw(window);
+        DrawEnemies();
 
         window.display();
     }
