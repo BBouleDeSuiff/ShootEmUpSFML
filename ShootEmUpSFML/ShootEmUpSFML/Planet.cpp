@@ -6,11 +6,7 @@ Planet::Planet(Vector2f _position, Vector2f _scale, float _rotationSpeed):Object
 
     rotationSpeed = _rotationSpeed;
 
-
-    if (texture.loadFromFile("jupiterTexture.jpg"))
-        std::cout << "Unable to load texture" << std::endl;
-    else
-        texture.loadFromFile("jupiterTexture.jpg");
+    texture.loadFromFile("jupiterTexture.jpg");
 
     planetShape.setPosition(_position);
     planetShape.setTexture(&texture);
