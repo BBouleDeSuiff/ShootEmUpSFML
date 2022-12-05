@@ -15,8 +15,8 @@ public :
 	void Update(sf::Event &event,float time);
 	void Draw(sf::RenderWindow& window);
 private:
-	//float stamina;
-	//float maxStamina;
+	float stamina;
+	float maxStamina;
 	bool isActive;
 	LineCollider collider;
 	sf::Vector2f* playerOne;
