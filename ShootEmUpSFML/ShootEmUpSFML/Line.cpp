@@ -1,8 +1,8 @@
 #include "Line.h"
 
 Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
-	maxStamina = 10.;
-	stamina = maxStamina;
+	//maxStamina = 10.;
+	//stamina = maxStamina;
 	isActive = false;
 	this->playerOne = &playerOne;
 	this->playerTwo = &playerTwo;
@@ -16,21 +16,16 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 }
 void Line::Update(sf::Event& event, float time)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && stamina > 0.) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		isActive = true;
 		line[0] = sf::Vertex(*(this->playerOne));
 		line[1] = sf::Vertex(*(this->playerTwo));
-		stamina -= time * 2;
-		if (stamina <= 0.) {
-			isActive = false;
-		}
+		//stamina -= time;
 	} else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
 		isActive = false;
+		//stamina += time * 2;
 	}
-	if (!isActive && stamina <= maxStamina) {
-		stamina += time * 3;
-	}
-	healthBar.setSize(sf::Vector2f(200 * stamina /maxStamina, 30));
+	//healthBar.setSize(sf::Vector2f(200 * stamina /maxStamina, 30));
 }
 
 void Line::Draw(sf::RenderWindow& window)
@@ -38,6 +33,6 @@ void Line::Draw(sf::RenderWindow& window)
 	if (isActive) {
 		window.draw(line, 2, sf::Lines);
 	}
-	window.draw(healthBar);
+	//window.draw(healthBar);
 }
 
