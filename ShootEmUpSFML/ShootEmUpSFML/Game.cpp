@@ -108,9 +108,10 @@ void Game::Update()
 
         window.clear(sf::Color::Black);
         // Whatever I want to draw goes here
+        line->Draw(window);
         playerOne->Draw(window);
         playerTwo->Draw(window);
-        line->Draw(window);
+        
         planet->AnimateAndDraw(window);
         DrawEnemies();
 
