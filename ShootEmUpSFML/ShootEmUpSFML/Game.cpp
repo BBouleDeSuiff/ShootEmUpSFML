@@ -98,7 +98,7 @@ void Game::Update()
         playerOne->Update(deltaTime);
         playerTwo->Update(deltaTime);
         planet->Update(deltaTime);
-        line->Update(event);
+        line->Update(event,deltaTime);
         StartEnemyWaves();
 
         for (Enemy* &enemy : enemies)

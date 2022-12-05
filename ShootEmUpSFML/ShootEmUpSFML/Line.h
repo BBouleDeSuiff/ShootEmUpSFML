@@ -2,12 +2,6 @@
 #include <SFML/Graphics.hpp>
 #include "LineCollider.h"
 
-enum LineState {
-	ACTIVE,
-	NOT_ACTIVE,
-	NONE
-};
-
 class Line
 {
 public :
