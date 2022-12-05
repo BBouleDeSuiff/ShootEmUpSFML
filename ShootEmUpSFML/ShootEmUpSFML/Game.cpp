@@ -35,7 +35,7 @@ void Game::Update()
         playerOne->Update(time);
         playerTwo->Update(time);
         planet->Update(time);
-        line->Update(event);
+        line->Update(event,time);
 
         for (Enemy &enemy : enemies)
         {
@@ -44,9 +44,10 @@ void Game::Update()
 
         window.clear(sf::Color::Black);
         // Whatever I want to draw goes here
+        line->Draw(window);
         playerOne->Draw(window);
         playerTwo->Draw(window);
-        line->Draw(window);
+        
         planet->AnimateAndDraw(window);
 
         window.display();

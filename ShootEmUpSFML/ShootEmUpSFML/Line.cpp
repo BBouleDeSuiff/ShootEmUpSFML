@@ -1,6 +1,7 @@
 #include "Line.h"
 
 Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
+	stamina = 10.;
 	isActive = false;
 	this->playerOne = &playerOne;
 	this->playerTwo = &playerTwo;
@@ -8,7 +9,7 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 	line[1] = sf::Vertex(playerTwo);	
 	collider = LineCollider(playerOne, playerTwo);
 }
-void Line::Update(sf::Event &event)
+void Line::Update(sf::Event& event, float time)
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		isActive = true;
