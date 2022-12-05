@@ -2,22 +2,34 @@
 #include <iostream>
 
 sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
+    srand(1);
     int randomSide = rand() % 1 + 0;
+
+    int *choices;
+    int x;
+    int y ;
+
     switch (randomSide) {
         case 0:
-            int choices[2] = { 0 - spawnMargin, 800 + spawnMargin };
-            int x = choices[rand() % 1 + 0];
-            int y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
+            srand(1);
+            choices = new int[2] { (0 - spawnMargin), (800 + spawnMargin) };
+            x = choices[rand() % 1 + 0];
+            srand(1);
+            y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
             return(*(new Vector2f(x, y)));
         case 1:
-            int choices[2] = { 0 - spawnMargin, 600 + spawnMargin };
-            int x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
-            int y = choices[rand() % 1 + 0]; 
+            srand(1);
+            choices = new int[2] { 0 - spawnMargin, 600 + spawnMargin };
+            x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
+            srand(1);
+            y = choices[rand() % 1 + 0]; 
             return(*(new Vector2f(x, y)));
     }
 }
 
+
 void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, int numberOfEnemies, int spawnMargin) {
+    srand(1);
     int randInt = rand() % 10 + 1;
     for (int i = 0; i < numberOfEnemies; i++) {
         if (randInt <= 8)
@@ -29,8 +41,10 @@ void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& play
 
 void Game::StartEnemyWaves() {
     timer += time;
-    if (timer > 5) {
+    //std::cout << timer << std::endl;
+    if (timer > 3) {
         SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, enemiesNumber, spawnMargin);
+        std::cout << enemies.size() << std::endl;
         enemiesNumber++;
         timer = 0;
     }
@@ -40,8 +54,8 @@ Game::Game()
 {
 	score = 0;
     time = clock.getElapsedTime().asSeconds();
-	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
-	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(30, 30), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
+	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
+	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
@@ -71,6 +85,7 @@ void Game::Update()
         playerTwo->Update(time);
         planet->Update(time);
         line->Update(event);
+        StartEnemyWaves();
 
         for (Enemy* &enemy : enemies)
         {
