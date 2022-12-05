@@ -11,7 +11,7 @@
 class Game
 {
 	private :
-		float time; //Delta time between two frames
+		float deltaTime; //Delta time between two frames
 		Player* playerOne;
 		Player* playerTwo;
 		Planet* planet;

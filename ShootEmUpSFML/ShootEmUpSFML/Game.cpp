@@ -2,12 +2,11 @@
 #include <iostream>
 
 sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
-    srand(time(NULL));
     int randomSide;
-    for (int i=0; i < 10; i++) {
-        randomSide = rand() % 1 + 0;
-        std::cout << rand() << std::endl;
-    }
+    randomSide = rand() % 2;
+    /*for (int i=0; i < 10; i++) {
+        std::cout << rand() % 2 << std::endl;
+    }*/
 
     int *choices;
     int x;
@@ -16,20 +15,20 @@ sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
     switch (randomSide) {
         case 0:
             choices = new int[2] { (0 - spawnMargin), (800 + spawnMargin) };
-            x = choices[rand() % 1 + 0];
+            x = choices[rand() % 2 + 0];
             y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
 
-            std::cout << "x ="<< x << std::endl;
-            std::cout << "y =" << y << std::endl;
+            /*std::cout << "x ="<< x << std::endl;
+            std::cout << "y =" << y << std::endl;*/
 
             return(*(new Vector2f(x, y)));
         case 1:
             choices = new int[2] { 0 - spawnMargin, 600 + spawnMargin };
             x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
-            y = choices[rand() % 1 + 0]; 
+            y = choices[rand() % 2 + 0]; 
 
-            std::cout << "x =" << x << std::endl;
-            std::cout << "y =" << y << std::endl;
+            /*std::cout << "x =" << x << std::endl;
+            std::cout << "y =" << y << std::endl;*/
 
             return(*(new Vector2f(x, y)));
     }
@@ -47,11 +46,11 @@ void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& play
 }
 
 void Game::StartEnemyWaves() {
-    timer += time;
+    timer += deltaTime;
     //std::cout << timer << std::endl;
     if (timer > 3) {
         SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, enemiesNumber, spawnMargin);
-        std::cout << enemies.size() << std::endl;
+        //std::cout << enemies.size() << std::endl;
         enemiesNumber++;
         timer = 0;
     }
@@ -66,8 +65,9 @@ void Game::DrawEnemies() {
 
 Game::Game()
 {
+    srand(time(NULL));
 	score = 0;
-    time = clock.getElapsedTime().asSeconds();
+    deltaTime = clock.getElapsedTime().asSeconds();
 	playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue);
 	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
@@ -85,7 +85,7 @@ void Game::Update()
 {
     // Game loop
     while (window.isOpen()) {
-        time = clock.getElapsedTime().asSeconds();
+        deltaTime = clock.getElapsedTime().asSeconds();
         //std::cout << time << std::endl;
         clock.restart();
         sf::Event event;
@@ -95,15 +95,15 @@ void Game::Update()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        playerOne->Update(time);
-        playerTwo->Update(time);
-        planet->Update(time);
+        playerOne->Update(deltaTime);
+        playerTwo->Update(deltaTime);
+        planet->Update(deltaTime);
         line->Update(event);
         StartEnemyWaves();
 
         for (Enemy* &enemy : enemies)
         {
-            enemy->Update(time);
+            enemy->Update(deltaTime);
         }
 
         window.clear(sf::Color::Black);
