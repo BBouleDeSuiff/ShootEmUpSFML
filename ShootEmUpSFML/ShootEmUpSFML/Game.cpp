@@ -75,13 +75,6 @@ Game::Game()
     line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
-
-Game::~Game()
-{
-	delete playerOne;
-	delete playerTwo;
-}
-
 void Game::Update()
 {
     // Game loop
@@ -118,4 +111,10 @@ void Game::Update()
 
         window.display();
     }
+}
+
+Game::~Game()
+{
+    delete playerOne;
+    delete playerTwo;
 }
