@@ -19,10 +19,10 @@ void Player::Update(float time) {
 void Player::Controls(float time, PlayerNumber playerNumber) {
     switch (playerNumber) {
         case PlayerNumber::PLAYER1:
-            UpdatePlayerPos(time, Keyboard::Q, Keyboard::D, Keyboard::Z, Keyboard::S);
+            UpdatePlayerPos(time, Keyboard::Q, Keyboard::D, Keyboard::S, Keyboard::Z);
             break;
         case PlayerNumber::PLAYER2:
-            UpdatePlayerPos(time, Keyboard::Left, Keyboard::Right, Keyboard::Up, Keyboard::Down);
+            UpdatePlayerPos(time, Keyboard::Left, Keyboard::Right, Keyboard::Down, Keyboard::Up);
             break;
     }
 }
@@ -31,19 +31,32 @@ void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key ri
     this->position;
     if (sf::Keyboard::isKeyPressed(leftKey)) {
         this->position.x += -1 * this->speed * time;
+        if (this->position.x < - triangle.getScale().x) {
+            this->position.x = this->position.x + 800 + triangle.getScale().x;
+        }
         this->angle = -90;
     }
     else if (sf::Keyboard::isKeyPressed(rightKey)) {
         this->position.x += 1 * this->speed * time;
+        if (this->position.x > 800 + triangle.getScale().x) {
+            this->position.x = this->position.x  - 800 - triangle.getScale().x;
+        }
         this->angle = 90;
     }
     else if (sf::Keyboard::isKeyPressed(downKey)) {
-        this->position.y -= 1 * this->speed * time;
-        this->angle = 0;
+        this->position.y += 1 * this->speed * time;
+        if (this->position.y > 600 + triangle.getScale().y) {
+            this->position.y = this->position.y - 600 - triangle.getScale().y;
+        }
+        this->angle = 180;
     }
     else if (sf::Keyboard::isKeyPressed(upKey)) {
-        this->position.y += 1 * this->speed * time;
-        this->angle = 180;
+        this->position.y -= 1 * this->speed * time;
+        if (this->position.y < -triangle.getScale().y) {
+            this->position.y = this->position.y + 600 + triangle.getScale().y;
+            std::cout << "  " << this->position.y << std::endl;
+        }
+        this->angle = 0;
     }
 }
 void Player::Draw(RenderWindow &window) {
