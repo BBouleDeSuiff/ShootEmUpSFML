@@ -39,9 +39,9 @@ void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& play
     for (int i = 0; i < numberOfEnemies; i++) {
         int randInt = rand() % 10 + 1;
         if (randInt <= 8)
-            enemyLists.push_back(new Soldier(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, speed, playerOne, playerTwo, planet, line));
+            enemyLists.push_back(new Soldier(GetRandomOutsidePos(spawnMargin), sf::Vector2f(15, 15), 0, speed, playerOne, playerTwo, planet, line));
         else
-            enemyLists.push_back(new Assassin(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, speed, playerOne, playerTwo, planet, line));
+            enemyLists.push_back(new Assassin(GetRandomOutsidePos(spawnMargin), sf::Vector2f(15, 15), 0, speed, playerOne, playerTwo, planet, line));
     }
 }
 
