@@ -9,5 +9,5 @@ class Soldier : public Enemy
 
 		void Update(float time);
 
-		Soldier(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet);
+		Soldier(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet, Line& _line);
 };

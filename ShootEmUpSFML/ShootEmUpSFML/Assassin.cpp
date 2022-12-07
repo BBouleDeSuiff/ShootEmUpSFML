@@ -1,8 +1,7 @@
 #include "Assassin.h"
 
-Assassin::Assassin(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet):Enemy(_position, _scale, _angle, _speed, _p1, _p2, _planet)
+Assassin::Assassin(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet, Line& _line):Enemy(_position, _scale, _angle, _speed, _p1, _p2, _planet, _line)
 {
-
 	shape = sf::CircleShape(1 * _scale.x, 6);
 	shape.setOutlineThickness(3);
 	shape.setOutlineColor(Color::Magenta); 
