@@ -35,13 +35,13 @@ sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
 }
 
 
-void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin) {
+void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed) {
     for (int i = 0; i < numberOfEnemies; i++) {
         int randInt = rand() % 10 + 1;
         if (randInt <= 8)
-            enemyLists.push_back(new Soldier(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, 100, playerOne, playerTwo, planet, line));
+            enemyLists.push_back(new Soldier(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, speed, playerOne, playerTwo, planet, line));
         else
-            enemyLists.push_back(new Assassin(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, 100, playerOne, playerTwo, planet, line));
+            enemyLists.push_back(new Assassin(GetRandomOutsidePos(spawnMargin), sf::Vector2f(30, 30), 0, speed, playerOne, playerTwo, planet, line));
     }
 }
 
@@ -49,7 +49,7 @@ void Game::StartEnemyWaves() {
     timer += deltaTime;
     //std::cout << timer << std::endl;
     if (timer > 6) {
-        SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, enemiesNumber, spawnMargin, enemiesSpeed);
+        SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, *line, enemiesNumber, spawnMargin, enemiesSpeed);
         //std::cout << enemies.size() << std::endl;
         enemiesNumber+= 0.25f;
         enemiesSpeed += 2;
