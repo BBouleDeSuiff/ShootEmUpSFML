@@ -5,6 +5,8 @@
 
 class Assassin : public Enemy
 {
+	private:
+		int score = 30;
 	public:
 
 		void Update(float time);
