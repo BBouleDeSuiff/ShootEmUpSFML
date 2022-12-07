@@ -48,10 +48,11 @@ void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& play
 void Game::StartEnemyWaves() {
     timer += deltaTime;
     //std::cout << timer << std::endl;
-    if (timer > 3) {
-        SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, *line, enemiesNumber, spawnMargin);
+    if (timer > 6) {
+        SpawnEnemies(enemies, *playerOne, *playerTwo, *planet, enemiesNumber, spawnMargin, enemiesSpeed);
         //std::cout << enemies.size() << std::endl;
-        enemiesNumber++;
+        enemiesNumber+= 0.25f;
+        enemiesSpeed += 2;
         timer = 0;
     }
 }
