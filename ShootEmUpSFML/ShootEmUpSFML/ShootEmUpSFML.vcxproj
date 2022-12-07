@@ -138,6 +138,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="LineCollider.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ShootEmUpSFML.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="LineCollider.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="SphereCollider.h" />

@@ -17,14 +17,17 @@ class Game
 		Planet* planet;
 
 		std::list<Enemy*> enemies;
-		int enemiesNumber = 1; // Number of enemies per wave
-		const float spawnMargin = 10; // How far enemies spawn outside of screen
+		float enemiesNumber = 1; // Number of enemies per wave
+		float enemiesSpeed = 70;
+		const float spawnMargin = 30; // How far enemies spawn outside of screen
 		float timer = 0;
 
 		Line* line;
 		sf::RenderWindow window;
 		sf::Clock clock;
 
+		void StartEnemyWaves();
+		void DrawEnemies();
 
 	public :
 		int score;
@@ -32,8 +35,6 @@ class Game
 		Game();
 		~Game();
 
-		void StartEnemyWaves();
-		void DrawEnemies();
 		void Update();
 };
 

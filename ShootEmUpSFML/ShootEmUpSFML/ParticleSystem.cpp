@@ -25,20 +25,20 @@ void Exercice1() {
 	system("pause");
 }
 
-int main()
-{
-	//Exercice1();
-	ParticleSystem particleSystem;
-	AddParticleToSystem(particleSystem, 5);
-	AddParticleToSystem(particleSystem, 5);
-	AddParticleToSystem(particleSystem, 5);
-	auto l_front = particleSystem.particleList.begin();
-
-	//std::advance(l_front, 1);
-
-	//std::cout << l_front->lifeTime << '\n';
-	//while(particleSystem.particleList.size()>0) {
-	//	UpdateParticleSystem(particleSystem, 1);
-	//}
-	cout << particleSystem.particleList.size();
-}
+//int main()
+//{
+//	//Exercice1();
+//	ParticleSystem particleSystem;
+//	AddParticleToSystem(particleSystem, 5);
+//	AddParticleToSystem(particleSystem, 5);
+//	AddParticleToSystem(particleSystem, 5);
+//	auto l_front = particleSystem.particleList.begin();
+//
+//	//std::advance(l_front, 1);
+//
+//	//std::cout << l_front->lifeTime << '\n';
+//	//while(particleSystem.particleList.size()>0) {
+//	//	UpdateParticleSystem(particleSystem, 1);
+//	//}
+//	cout << particleSystem.particleList.size();
+//}
