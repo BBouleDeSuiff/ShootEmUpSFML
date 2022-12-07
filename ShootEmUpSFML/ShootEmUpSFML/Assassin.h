@@ -5,10 +5,12 @@
 
 class Assassin : public Enemy
 {
+	private:
+		int score = 30;
 	public:
 
 		void Update(float time);
 		void ResetTarget();
 
-		Assassin(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet);
+		Assassin(Vector2f _position, Vector2f _scale, float _angle, float _speed, Player& _p1, Player& _p2, Planet& _planet, Line& _line);
 };
