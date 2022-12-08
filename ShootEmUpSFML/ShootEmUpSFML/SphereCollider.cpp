@@ -1,9 +1,5 @@
 #include "SphereCollider.h"
 
-SphereCollider::SphereCollider()
-{
-}
-
 SphereCollider::SphereCollider(sf::Vector2f& pos, float rad)
 {
 	position = &pos;

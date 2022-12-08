@@ -1,6 +1,6 @@
 #include "Line.h"
 
-Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
+Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) : collider(playerOne,playerTwo) {
 	maxStamina = 3.;
 	stamina = maxStamina;
 	isActive = false;
@@ -11,7 +11,6 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 	healthBar.setSize(sf::Vector2f(200,30));
 	healthBar.setPosition(sf::Vector2f(10,10));
 	healthBar.setFillColor(sf::Color::Green);
-	collider = LineCollider(playerOne, playerTwo);
 }
 void Line::Update(sf::Event& event, float time)
 {
