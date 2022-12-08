@@ -70,7 +70,14 @@ void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key ri
     Normalize(directionVector);
     this->position.x += this->speed * time * directionVector.x;
     this->position.y += this->speed * time * directionVector.y;
+
+    if(directionVector.x !=0 || directionVector.y != 0)
+        particleSystem->isEnabled = true;
+    else
+        particleSystem->isEnabled = false;
+
     particleSystem->origin = position;
+
     CheckOutOfBounds();
 }
 

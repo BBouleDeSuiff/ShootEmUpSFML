@@ -59,8 +59,8 @@ Game::Game()
     srand(time(NULL));
 	score = 0;
     deltaTime = clock.getElapsedTime().asSeconds();
-    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.2f, 0.25f, 1.f, 30, 2);
-	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.2f, 0.25f, 1.f, 30, 2);
+    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.15f, 0.25f, 1.f, 20, 10);
+	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.15f, 0.25f, 1.f, 20, 10);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(windowWidth, windowHeight), "SFMLMotherHuger");
@@ -96,12 +96,12 @@ void Game::Update()
         window.clear(sf::Color::Black);
 
         // Whatever I want to draw goes here
+        planet->AnimateAndDraw(window);
         line->Draw(window);
         playerOne->particleSystem->Draw(window);
         playerTwo->particleSystem->Draw(window);
         playerOne->Draw(window);
         playerTwo->Draw(window);
-        planet->AnimateAndDraw(window);
         DrawEnemies();
 
         std::list<Enemy*>::iterator it = enemies.begin();
@@ -122,6 +122,12 @@ void Game::Update()
 
 Game::~Game()
 {
+    delete playerOne->particleSystem->particleList;
+    delete playerTwo->particleSystem->particleList;
+
+    delete playerOne->particleSystem;
+    delete playerTwo->particleSystem;
+
     delete playerOne;
     delete playerTwo;
     delete planet;
