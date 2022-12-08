@@ -12,7 +12,6 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 	healthBar.setSize(sf::Vector2f(200,30));
 	healthBar.setPosition(sf::Vector2f(10,10));
 	healthBar.setFillColor(sf::Color::Green);
-	healthBar.setPosition(sf::Vector2f());
 }
 void Line::Update(sf::Event& event, float time)
 {
