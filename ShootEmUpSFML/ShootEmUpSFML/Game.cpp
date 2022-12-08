@@ -127,4 +127,13 @@ Game::~Game()
 {
     delete playerOne;
     delete playerTwo;
+    delete planet;
+    delete line;
+
+    std::list<Enemy*>::iterator it = enemies.begin();
+    while (it != enemies.end())
+    {
+        delete *it;
+        it++;
+    }
 }
