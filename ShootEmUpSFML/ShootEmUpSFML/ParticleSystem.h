@@ -3,7 +3,6 @@
 #include <iostream>
 #include<cmath>
 #include<list>
-#include "Player.h"
 
 using namespace sf;
 
@@ -25,9 +24,9 @@ class ParticleSystem
 		Vector2f origin;
 		float spawnRadius;
 		float startSize;
-		Player *player;
+		CircleShape *playerShape;
 
-		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, Player *_player);
+		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, CircleShape* playerShape);
 
 		void AddParticle(float lifetime);
 		void Update(float elapsedDeltaTime);

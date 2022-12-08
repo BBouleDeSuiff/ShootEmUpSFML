@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, Player* _player) {
+ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, CircleShape* _playerShape) {
 
 	particleList = new std::list<Particle> ;
 
@@ -21,15 +21,15 @@ ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticle
 	origin = _origin;
 	spawnRadius = _spawnRadius;
 	startSize = _startSize;
-	player = _player;
+	playerShape = _playerShape;
 }
 void ParticleSystem::AddParticle(float lifetime) {
 	Particle particle = { lifetime };
 
 	//particle.shape.setRadius(10);
-	particle.shape.setSize(Vector2f(5, 50));
+	particle.shape.setSize(Vector2f(1 * startSize, 10 * startSize));
 	particle.shape.setOrigin(10, 10);
-	particle.shape.setRotation(player->triangle.getRotation());
+	particle.shape.setRotation(playerShape->getRotation());
 
 	const float PI = 3.14159265;
 	float angle = PI * 2.0f * (float)rand() / RAND_MAX;

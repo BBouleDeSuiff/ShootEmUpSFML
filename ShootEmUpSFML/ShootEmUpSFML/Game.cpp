@@ -59,8 +59,8 @@ Game::Game()
     srand(time(NULL));
 	score = 0;
     deltaTime = clock.getElapsedTime().asSeconds();
-    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.2f, 0.25f, 1.f, 30, 15);
-	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.2f, 0.25f, 1.f, 30, 15);
+    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.2f, 0.25f, 1.f, 30, 2);
+	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.2f, 0.25f, 1.f, 30, 2);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
