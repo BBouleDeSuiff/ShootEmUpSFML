@@ -19,7 +19,6 @@ class Player : public Object
         Color color;
         ParticleSystem *particleSystem;
 
-        void Normalize(Vector2f& vector);
         void Update(float time);
         void Controls(float time, PlayerNumber playerNumber);
         void UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key rightKey, Keyboard::Key downKey, Keyboard::Key upKey);

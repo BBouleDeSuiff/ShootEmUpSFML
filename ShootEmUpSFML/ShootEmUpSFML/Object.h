@@ -21,7 +21,7 @@ class Object
 
         Object(Vector2f _position, Vector2f _scale, float _angle, float _speed);
         Object(Vector2f _position, Vector2f _scale); // for non-moving objects
-
+        void Normalize(Vector2f& vector);
         virtual void Draw(RenderWindow& window);
 };
 

@@ -7,11 +7,11 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 	this->playerOne = &playerOne;
 	this->playerTwo = &playerTwo;
 	line[0] = sf::Vertex(playerOne);
-	line[1] = sf::Vertex(playerTwo);	
-	collider = LineCollider(playerOne, playerTwo);
+	line[1] = sf::Vertex(playerTwo);
 	healthBar.setSize(sf::Vector2f(200,30));
 	healthBar.setPosition(sf::Vector2f(10,10));
 	healthBar.setFillColor(sf::Color::Green);
+	collider = LineCollider(playerOne, playerTwo);
 }
 void Line::Update(sf::Event& event, float time)
 {
@@ -39,22 +39,6 @@ void Line::Update(sf::Event& event, float time)
 	if (!isActive && stamina < maxStamina && !(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))) {
 		stamina += time * 2;
 	}
-	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
-		if (stamina > 0.) {
-			isActive = true;
-			line[0] = sf::Vertex(*(this->playerOne));
-			line[1] = sf::Vertex(*(this->playerTwo));
-			stamina -= time;
-		}
-		else {
-			isActive = false;
-		}
-	} else if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Space) {
-		isActive = false;
-	}
-	if (!isActive && stamina < maxStamina && !sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-		stamina += time * 2;
-	}*/
 	healthBar.setSize(sf::Vector2f(200 * stamina /maxStamina, 30));
 }
 

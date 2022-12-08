@@ -13,11 +13,6 @@ Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, 
     particleSystem = new ParticleSystem(_particleSpawnInterval, _minParticleLifeTime, maxParticleLifeTime, _position, _particleSpawnRadius, _particleStartSize, &triangle);
     keyStates = std::vector<bool>(4, false);
 }
-void Player::Normalize(Vector2f& vector) {
-    float norm = std::sqrt(vector.x * vector.x + vector.y * vector.y);
-    if (norm != 0)
-        vector = vector / norm;
-}
 
 void Player::Update(float time) {
     Controls(time, player);
