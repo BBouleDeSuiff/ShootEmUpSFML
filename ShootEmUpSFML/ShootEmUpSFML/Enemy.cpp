@@ -15,7 +15,7 @@ void Normalize(Vector2f& vector) {
 		vector = vector / norm;
 }
 
-void Enemy::Update(float time)
+void Enemy::Update(float time, int &score)
 {
 	//Change position here
 	direction = this->position - this->target->position;
@@ -36,6 +36,7 @@ void Enemy::Update(float time)
 	else if(collider.CheckCollision(line->collider) && line->isActive)
 	{
 		isDead = true;
+		score += this->score;
 	}
 	//else if(collider.CheckCollision)
 }

@@ -70,7 +70,6 @@ void Game::Update()
     // Game loop
     while (window.isOpen()) {
         deltaTime = clock.getElapsedTime().asSeconds();
-        //std::cout << time << std::endl;
         clock.restart();
         sf::Event event;
         while (window.pollEvent(event))
@@ -87,7 +86,7 @@ void Game::Update()
 
         for (Enemy* &enemy : enemies)
         {
-            enemy->Update(deltaTime);
+            enemy->Update(deltaTime, score);
         }
 
         window.clear(sf::Color::Black);
