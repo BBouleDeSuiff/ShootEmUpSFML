@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player, Color _color) :Object(_position, _scale, _angle, _speed)
+Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player,  Color _color, float _particleSpawnInterval, float _minParticleLifeTime, float maxParticleLifeTime, float _particleSpawnRadius, float _particleStartSize) :Object(_position, _scale, _angle, _speed)
 {
     player = _player;
     life = 1;
@@ -10,6 +10,7 @@ Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, 
     triangle.setFillColor(Color::Black);
     triangle.setOrigin(1 * _scale.x, 1 * _scale.x); //Set anchor point to triangle's center
     color = _color;
+    particleSystem = new ParticleSystem(_particleSpawnInterval, _minParticleLifeTime, maxParticleLifeTime, _position, _particleSpawnRadius, _particleStartSize, &triangle);
     keyStates = std::vector<bool>(4, false);
 }
 void Player::Normalize(Vector2f& vector) {
@@ -74,6 +75,7 @@ void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key ri
     Normalize(directionVector);
     this->position.x += this->speed * time * directionVector.x;
     this->position.y += this->speed * time * directionVector.y;
+    particleSystem->origin = position;
     CheckOutOfBounds();
 }
 
