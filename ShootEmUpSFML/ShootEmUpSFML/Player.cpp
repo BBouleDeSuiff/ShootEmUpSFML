@@ -10,7 +10,7 @@ Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, 
     triangle.setFillColor(Color::Black);
     triangle.setOrigin(1 * _scale.x, 1 * _scale.x); //Set anchor point to triangle's center
     color = _color;
-    particleSystem = new ParticleSystem(_particleSpawnInterval, _minParticleLifeTime, maxParticleLifeTime, _position, _particleSpawnRadius, _particleStartSize);
+    particleSystem = new ParticleSystem(_particleSpawnInterval, _minParticleLifeTime, maxParticleLifeTime, _position, _particleSpawnRadius, _particleStartSize, this);
     keyStates = std::vector<bool>(4, false);
 }
 void Player::Normalize(Vector2f& vector) {

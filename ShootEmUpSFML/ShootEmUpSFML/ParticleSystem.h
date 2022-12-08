@@ -3,13 +3,14 @@
 #include <iostream>
 #include<cmath>
 #include<list>
+#include "Player.h"
 
 using namespace sf;
 
 struct Particle {
 	float lifeTime;
 	float elapsedTime = 0;
-	CircleShape shape;
+	RectangleShape shape;
 };
 
 
@@ -24,10 +25,9 @@ class ParticleSystem
 		Vector2f origin;
 		float spawnRadius;
 		float startSize;
+		Player *player;
 
-		//ParticleSystem(std::list<Particle> particleList,);
-
-		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize);
+		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, Player *_player);
 
 		void AddParticle(float lifetime);
 		void Update(float elapsedDeltaTime);

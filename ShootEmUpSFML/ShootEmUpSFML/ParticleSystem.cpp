@@ -10,7 +10,7 @@ using namespace std;
 
 
 
-ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize) {
+ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, Player* _player) {
 
 	particleList = new std::list<Particle> ;
 
@@ -21,12 +21,15 @@ ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticle
 	origin = _origin;
 	spawnRadius = _spawnRadius;
 	startSize = _startSize;
+	player = _player;
 }
 void ParticleSystem::AddParticle(float lifetime) {
 	Particle particle = { lifetime };
 
-	particle.shape.setRadius(10);
+	//particle.shape.setRadius(10);
+	particle.shape.setSize(Vector2f(5, 50));
 	particle.shape.setOrigin(10, 10);
+	particle.shape.setRotation(player->triangle.getRotation());
 
 	const float PI = 3.14159265;
 	float angle = PI * 2.0f * (float)rand() / RAND_MAX;
@@ -39,25 +42,25 @@ void ParticleSystem::AddParticle(float lifetime) {
 	(*particleList).push_back(particle);
 }
 
-void ParticleSystem::Update(float elapsedDeltaTime) {
+void ParticleSystem::Update(float deltaTime) {
 	std::list<Particle>::iterator it = (*particleList).begin();
-	this->spawnTimer += elapsedDeltaTime;
+	this->spawnTimer += deltaTime;
 	const float PI = 3.14159265;
-	while (spawnTimer > spawnDurationInterval) {
+	if (spawnTimer >= spawnDurationInterval) {
 		float lifeTime = minLifeTime + (maxLifeTime - minLifeTime) * (float)rand() / RAND_MAX;
 		AddParticle(lifeTime);
-		spawnTimer -= spawnDurationInterval;
-		it = (*particleList).begin();
-		while (it != (*particleList).end()) {
-			float scale = sin(PI * it->elapsedTime / it->lifeTime);
-			it->shape.setScale(scale, scale);
-			it->elapsedTime += elapsedDeltaTime;
-			if (it->elapsedTime > it->lifeTime) {
-				it = (*particleList).erase(it);
-				continue;
-			}
-			it++;
+		spawnTimer = 0;
+	}
+	it = (*particleList).begin();
+	while (it != (*particleList).end()) {
+		float scale = sin(PI * it->elapsedTime / it->lifeTime);
+		it->shape.setScale(scale, scale);
+		it->elapsedTime += deltaTime;
+		if (it->elapsedTime > it->lifeTime) {
+			it = (*particleList).erase(it);
+			continue;
 		}
+		it++;
 	}
 }
 void ParticleSystem::Clear() {
