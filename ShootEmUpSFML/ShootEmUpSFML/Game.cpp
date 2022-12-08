@@ -4,9 +4,6 @@
 sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
     int randomSide;
     randomSide = rand() % 2;
-    /*for (int i=0; i < 10; i++) {
-        std::cout << rand() % 2 << std::endl;
-    }*/
 
     int *choices;
     int x;
@@ -17,21 +14,14 @@ sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
             choices = new int[2] { (0 - spawnMargin), (800 + spawnMargin) };
             x = choices[rand() % 2 + 0];
             y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
-
-            /*std::cout << "x ="<< x << std::endl;
-            std::cout << "y =" << y << std::endl;*/
-
-            return(*(new Vector2f(x, y)));
+            break;
         case 1:
             choices = new int[2] { 0 - spawnMargin, 600 + spawnMargin };
             x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
             y = choices[rand() % 2 + 0]; 
-
-            /*std::cout << "x =" << x << std::endl;
-            std::cout << "y =" << y << std::endl;*/
-
-            return(*(new Vector2f(x, y)));
+            break;
     }
+    return(*(new Vector2f(x, y)));
 }
 
 
