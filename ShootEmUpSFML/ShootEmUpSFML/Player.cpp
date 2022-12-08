@@ -35,25 +35,8 @@ void Player::Controls(float time, PlayerNumber playerNumber) {
 
 void Player::UpdatePlayerRot(sf::Vector2f directionVector)
 {
-    if (directionVector.x == 1) {
-        //DOWN-RIGHT
-        if (directionVector.y == 1) {
-            this->angle = 135;
-        }
-        //UP-RIGHT
-        else if (directionVector.y == -1) {
-            this->angle = 45;
-        }
-    }
-    else if (directionVector.x == -1) {
-        //DOWN-LEFT
-        if (directionVector.y == 1) {
-            this->angle = -135;
-        }
-        //UP-LEFT
-        else if (directionVector.y == -1) {
-            this->angle = -45;
-        }
+    if (directionVector.y != 0 || directionVector.x != 0) {
+        this->angle = (int)(atan2(directionVector.y, directionVector.x) * 180 / 3.1415 + 90);
     }
 }
 
@@ -77,21 +60,16 @@ void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key ri
     sf::Vector2f directionVector;
     if (sf::Keyboard::isKeyPressed(leftKey)) {
         directionVector.x += -1;
-        this->angle = -90;
     }
     if (sf::Keyboard::isKeyPressed(rightKey)) {
         directionVector.x += 1;
-        this->angle = 90;
     }
     if (sf::Keyboard::isKeyPressed(downKey)) {
         directionVector.y += 1;
-        this->angle = 180;
     }
     if (sf::Keyboard::isKeyPressed(upKey)) {
         directionVector.y += -1;
-        this->angle = 0;
     }
-
     UpdatePlayerRot(directionVector);
     CheckOutOfBounds();
     Normalize(directionVector);
