@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Soldier.h"
 #include "Assassin.h"
+#include "UIElements.h"
 #include <list>
 
 class Game
@@ -16,7 +17,9 @@ class Game
 		float deltaTime; //Delta time between two frames
 		Player* playerOne;
 		Player* playerTwo;
+		std::list<Player*> players;
 		Planet* planet;
+		UIElements* UI;
 
 		std::list<Enemy*> enemies;
 		float enemiesNumber = 1; // Number of enemies per wave
@@ -31,7 +34,10 @@ class Game
 		void SpawnEnemies(std::list<Enemy*>& enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed);
 
 		void StartEnemyWaves();
-		void DrawEnemies();
+
+		void UpdateObjects(Event event);
+		void Draw(RenderWindow& window);
+
 		sf::Vector2f GetRandomOutsidePos(int spawnMargin);
 
 	public :

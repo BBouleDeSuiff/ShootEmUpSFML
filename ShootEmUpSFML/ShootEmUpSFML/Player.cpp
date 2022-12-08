@@ -3,7 +3,7 @@
 Player::Player(Vector2f _position, Vector2f _scale, float _angle, float _speed, int _life, PlayerNumber _player,  Color _color, float _particleSpawnInterval, float _minParticleLifeTime, float maxParticleLifeTime, float _particleSpawnRadius, float _particleStartSize) :Object(_position, _scale, _angle, _speed)
 {
     player = _player;
-    life = 1;
+    life = 2;
     triangle = sf::CircleShape(1 * _scale.x, 3);
     triangle.setOutlineThickness(3);
     triangle.setOutlineColor(_color);
@@ -86,3 +86,4 @@ void Player::Draw(RenderWindow &window) {
     this->triangle.setRotation(this->angle);
     window.draw(triangle);
 }
+

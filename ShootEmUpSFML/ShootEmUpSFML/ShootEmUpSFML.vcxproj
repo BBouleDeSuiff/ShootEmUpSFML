@@ -145,6 +145,7 @@
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="Line.cpp" />
+    <ClCompile Include="UIElements.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assassin.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Line.h" />
+    <ClInclude Include="UIElements.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="jupiterTexture.jpg" />
