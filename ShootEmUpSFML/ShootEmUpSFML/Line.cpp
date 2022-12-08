@@ -15,7 +15,31 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) {
 }
 void Line::Update(sf::Event& event, float time)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+			if (stamina > 0.) {
+				isActive = true;
+				line[0] = sf::Vertex(*(this->playerOne));
+				line[1] = sf::Vertex(*(this->playerTwo));
+				stamina -= time;
+			}
+			else {
+				isActive = false;
+			}
+		}
+		else {
+			if (stamina > 0.) {
+				stamina -= time;
+			}
+		}
+	}
+	if (event.type == sf::Event::KeyReleased && (event.key.code == sf::Keyboard::Space || event.key.code == sf::Keyboard::Enter)) {
+		isActive = false;
+	}
+	if (!isActive && stamina < maxStamina && !(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))) {
+		stamina += time * 2;
+	}
+	/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
 		if (stamina > 0.) {
 			isActive = true;
 			line[0] = sf::Vertex(*(this->playerOne));
@@ -30,7 +54,7 @@ void Line::Update(sf::Event& event, float time)
 	}
 	if (!isActive && stamina < maxStamina && !sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
 		stamina += time * 2;
-	}
+	}*/
 	healthBar.setSize(sf::Vector2f(200 * stamina /maxStamina, 30));
 }
 

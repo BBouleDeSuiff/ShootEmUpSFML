@@ -71,10 +71,10 @@ void Player::UpdatePlayerPos(float time, Keyboard::Key leftKey, Keyboard::Key ri
         directionVector.y += -1;
     }
     UpdatePlayerRot(directionVector);
-    CheckOutOfBounds();
     Normalize(directionVector);
     this->position.x += this->speed * time * directionVector.x;
     this->position.y += this->speed * time * directionVector.y;
+    CheckOutOfBounds();
 }
 
 void Player::Draw(RenderWindow &window) {

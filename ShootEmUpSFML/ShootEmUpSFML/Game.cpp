@@ -1,23 +1,23 @@
 #include "Game.h"
 #include <iostream>
 
-sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
+sf::Vector2f Game::GetRandomOutsidePos(int spawnMargin) {
     int randomSide;
     randomSide = rand() % 2;
 
-    int *choices;
-    int x;
-    int y ;
-
+    int choices[2];
+    int x = 0;
+    int y = 0;
+    choices[0] = 0 - spawnMargin;
     switch (randomSide) {
         case 0:
-            choices = new int[2] { (0 - spawnMargin), (800 + spawnMargin) };
+            choices[1] = windowWidth + spawnMargin;
             x = choices[rand() % 2 + 0];
-            y = rand() % (600 + spawnMargin) + (0 - spawnMargin);
+            y = rand() % (windowHeight + spawnMargin) + (0 - spawnMargin);
             break;
         case 1:
-            choices = new int[2] { 0 - spawnMargin, 600 + spawnMargin };
-            x = rand() % (800 + spawnMargin) + (0 - spawnMargin);
+            choices[1] = windowHeight + spawnMargin;
+            x = rand() % (windowWidth + spawnMargin) + (0 - spawnMargin);
             y = choices[rand() % 2 + 0]; 
             break;
     }
@@ -25,7 +25,7 @@ sf::Vector2f GetRandomOutsidePos(int spawnMargin) {
 }
 
 
-void SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed) {
+void Game::SpawnEnemies(std::list<Enemy*> &enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed) {
     for (int i = 0; i < numberOfEnemies; i++) {
         int randInt = rand() % 10 + 1;
         if (randInt <= 8)
@@ -63,7 +63,7 @@ Game::Game()
 	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
-	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
+	window.create(sf::VideoMode(windowWidth, windowHeight), "SFMLMotherHuger");
 }
 void Game::Update()
 {

@@ -11,6 +11,8 @@
 class Game
 {
 	private :
+		int windowWidth = 800;
+		int windowHeight = 600;
 		float deltaTime; //Delta time between two frames
 		Player* playerOne;
 		Player* playerTwo;
@@ -26,8 +28,11 @@ class Game
 		sf::RenderWindow window;
 		sf::Clock clock;
 
+		void SpawnEnemies(std::list<Enemy*>& enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed);
+
 		void StartEnemyWaves();
 		void DrawEnemies();
+		sf::Vector2f GetRandomOutsidePos(int spawnMargin);
 
 	public :
 		int score;
@@ -37,4 +42,3 @@ class Game
 
 		void Update();
 };
-
