@@ -109,6 +109,7 @@ void Game::Update()
         {
             if ((*it)->isDead)
             {
+                playerOne->particleSystem->AddEnemyDeathParticles(1, (*it)->scale, (*it)->position);
                 it = enemies.erase(it);
             }
             else

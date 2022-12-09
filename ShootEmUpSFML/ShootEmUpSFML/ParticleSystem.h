@@ -29,6 +29,7 @@ class ParticleSystem
 		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, CircleShape* playerShape);
 
 		void AddParticle(float lifetime);
+		void AddEnemyDeathParticles(float lifetime, sf::Vector2f scale, sf::Vector2f position);
 		void Update(float elapsedDeltaTime);
 		void Clear();
 		void Draw(RenderWindow& window);
