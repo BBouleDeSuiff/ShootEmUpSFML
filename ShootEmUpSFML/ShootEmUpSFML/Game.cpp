@@ -101,6 +101,7 @@ void Game::UpdateObjects(Event event)
 void Game::Draw(RenderWindow& window)
 {
     planet->AnimateAndDraw(window);
+    particleSystem->Draw(window);
     line->Draw(window);
 
     for (Player*& player : players)
@@ -112,7 +113,7 @@ void Game::Draw(RenderWindow& window)
     {
         enemy->Draw(window);
     }
-    particleSystem->Draw(window);
+
     UI->Draw(window);
 }
 

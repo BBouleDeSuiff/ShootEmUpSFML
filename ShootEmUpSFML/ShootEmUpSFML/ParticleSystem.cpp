@@ -38,7 +38,11 @@ void ParticleSystem::AddParticle(float lifetime) {
 void ParticleSystem::AddEnemyDeathParticles(float lifetime,sf::Vector2f scale, sf::Vector2f position)
 {
 	DeathEnemyParticle* particle = new DeathEnemyParticle(lifetime, startSize*2, position);
+	DeathEnemyParticle* particle2 = new DeathEnemyParticle(lifetime, startSize * 1, position);
+	DeathEnemyParticle* particle3 = new DeathEnemyParticle(lifetime, startSize * 0.3, position);
 	particleList.push_back(particle);
+	particleList.push_back(particle2);
+	particleList.push_back(particle3);
 }
 
 
