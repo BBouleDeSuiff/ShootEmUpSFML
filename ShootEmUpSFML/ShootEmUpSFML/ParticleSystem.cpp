@@ -47,11 +47,13 @@ void ParticleSystem::AddParticle(float lifetime) {
 void ParticleSystem::AddEnemyDeathParticles(float lifetime,sf::Vector2f scale, sf::Vector2f position)
 {
 	Particle particle = { lifetime };
-	particle.shape.setSize(Vector2f(startSize*10, startSize*10));
-	particle.shape.setOrigin(scale.x/2., scale.y / 2.);
+	particle.shape.setSize(Vector2f(startSize * 2, startSize * 2));
+	particle.shape.setOrigin(10,10);
+	particle.shape.setOutlineThickness(1.5f);
+	particle.shape.setFillColor(Color::Black);
+	particle.shape.setOutlineColor(Color::Cyan);
 
 	particle.shape.setPosition(position.x,position.y);
-
 	(*particleList).push_back(particle);
 }
 
