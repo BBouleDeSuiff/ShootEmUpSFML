@@ -7,7 +7,7 @@ class MovementParticle : public Particle
 public :
 	
 	MovementParticle(float lifetime, float startSize, sf::Vector2f position, float playerRotation);
-	void Draw(sf::RenderWindow& window);
-	void SetScale(float newScale);
+	void Draw(sf::RenderWindow& window) override;
+	void SetScale(float newScale) override;
 };
 

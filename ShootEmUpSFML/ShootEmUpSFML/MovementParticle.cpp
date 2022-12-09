@@ -1,4 +1,5 @@
 #include "MovementParticle.h"
+#include <iostream>
 
 MovementParticle::MovementParticle(float lifetime,float startSize, sf::Vector2f position, float playerRotation) : Particle(lifetime)
 {

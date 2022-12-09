@@ -30,21 +30,21 @@ void ParticleSystem::AddParticle(float lifetime) {
 	float x = this->origin.x + cos(angle) * distance;
 	float y = this->origin.y + sin(angle) * distance;
 
-	MovementParticle particle(lifetime, startSize, Vector2f(x, y), playerShape->getRotation());
+	MovementParticle* particle = new MovementParticle(lifetime, startSize, Vector2f(x, y), playerShape->getRotation());
 
 	particleList.push_back(particle);
 }
 
 void ParticleSystem::AddEnemyDeathParticles(float lifetime,sf::Vector2f scale, sf::Vector2f position)
 {
-	DeathEnemyParticle particle(lifetime, startSize, position);
+	DeathEnemyParticle* particle = new DeathEnemyParticle(lifetime, startSize, position);
 	particleList.push_back(particle);
 }
 
 
 
 void ParticleSystem::Update(float deltaTime) {
-	std::list<Particle>::iterator it = particleList.begin();
+	std::list<Particle*>::iterator it = particleList.begin();
 	this->spawnTimer += deltaTime;
 	const float PI = 3.14159265;
 
@@ -61,15 +61,17 @@ void ParticleSystem::Update(float deltaTime) {
 	// Delete particles // 
 	it = particleList.begin();
 	while (it != particleList.end()) {
-		float scale = sin(PI * it->elapsedTime / it->lifeTime);
-		it->SetScale(scale);
-		it->elapsedTime += deltaTime;
-		if (it->elapsedTime > it->lifeTime) {
+		float scale = sin(PI * (*it)->elapsedTime / (*it)->lifeTime);
+		(*it)->SetScale(scale);
+		(*it)->elapsedTime += deltaTime;
+		if ((*it)->elapsedTime > (*it)->lifeTime) {
+			delete* it;
 			it = particleList.erase(it);
 			continue;
 		}
 		it++;
 	}
+	//std::cout << "size " << particleList.size() << std::endl;
 }
 
 void ParticleSystem::Clear() {
@@ -78,8 +80,8 @@ void ParticleSystem::Clear() {
 }
 
 void ParticleSystem::Draw(RenderWindow& window) {
-	for (Particle particle : particleList)
+	for (Particle* particle : particleList)
 	{
-		particle.Draw(window);
+		particle->Draw(window);
 	}
 }

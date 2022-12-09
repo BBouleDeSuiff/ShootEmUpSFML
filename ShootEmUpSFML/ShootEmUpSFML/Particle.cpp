@@ -1,4 +1,5 @@
 #include "Particle.h"
+#include <iostream>
 
 Particle::Particle(float _lifeTime)
 {

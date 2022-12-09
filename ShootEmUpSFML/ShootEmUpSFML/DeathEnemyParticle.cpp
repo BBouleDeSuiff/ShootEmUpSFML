@@ -2,11 +2,11 @@
 
 DeathEnemyParticle::DeathEnemyParticle(float lifetime, float startSize, sf::Vector2f enemyPosition) : Particle(lifetime)
 {
-	shape.setScale(startSize * 2, startSize * 2);
-	shape.setOrigin(10, 10);
-	shape.setOutlineThickness(1.5f);
+	shape.setRadius(startSize);
+	shape.setScale(startSize, startSize);
+	shape.setOutlineThickness(0.3f);
 	shape.setFillColor(sf::Color::Black);
-	shape.setOutlineColor(sf::Color::Cyan);
+	shape.setOutlineColor(sf::Color::Yellow);
 	shape.setPosition(enemyPosition.x, enemyPosition.y);
 }
 
@@ -17,5 +17,5 @@ void DeathEnemyParticle::Draw(sf::RenderWindow& window)
 
 void DeathEnemyParticle::SetScale(float newScale)
 {
-	shape.setScale(newScale, newScale);
+	shape.setRadius(newScale);
 }
