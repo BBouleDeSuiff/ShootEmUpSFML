@@ -24,7 +24,7 @@ class Game
 		float enemiesSpeed = 70;
 		const float spawnMargin = 30; // How far enemies spawn outside of screen
 		float timer = 0;
-
+		ParticleSystem* particleSystem;
 		UIElements* UI;
 
 		sf::Clock clock;

@@ -60,6 +60,7 @@ Game::Game()
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
     UI = new UIElements(playerOne, playerTwo, line, &score);
+    particleSystem = new ParticleSystem(0.15f, 0.25f, 1.f,sf::Vector2f(0,0), 20, 10,nullptr);
 }
 
 void Game::UpdateObjects(Event event)
@@ -70,6 +71,7 @@ void Game::UpdateObjects(Event event)
 
     StartEnemyWaves();
 
+    
     for (Player*& player : players)
     {
         player->particleSystem->Update(deltaTime);
@@ -80,13 +82,13 @@ void Game::UpdateObjects(Event event)
     {
         enemy->Update(deltaTime, score);
     }
-
+    particleSystem->Update(deltaTime);
     std::list<Enemy*>::iterator it = enemies.begin();
     while (it != enemies.end())
     {
         if ((*it)->isDead)
         {
-            playerOne->particleSystem->AddEnemyDeathParticles(1, (*it)->scale, (*it)->position);
+            particleSystem->AddEnemyDeathParticles(1, (*it)->scale, (*it)->position);
             it = enemies.erase(it);
         }
         else
@@ -110,6 +112,7 @@ void Game::Draw(RenderWindow& window)
     {
         enemy->Draw(window);
     }
+    particleSystem->Draw(window);
     UI->Draw(window);
 }
 
@@ -131,7 +134,7 @@ Game::~Game()
 {
     delete playerOne->particleSystem;
     delete playerTwo->particleSystem;
-
+    delete particleSystem;
     delete playerOne;
     delete playerTwo;
     delete planet;
