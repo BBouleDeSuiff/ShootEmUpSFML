@@ -4,10 +4,16 @@
 
 class GameOver
 {
-	public:
-		bool isOver;
-		Button playButton;
-		Button quitButton;
-		GameOver();
-		void GameOverUpdate(sf::RenderWindow& window);
+public:
+	bool isOver;
+	int score;
+	Button playButton;
+	Button quitButton;
+	Text scoreTxt;
+	Text gameOverTitle;
+	Font font;
+	GameOver();
+	void GameOverUpdate(sf::RenderWindow& window, int _score);
+	void DrawScore(sf::Vector2f _pos, sf::RenderWindow& window);
+	void DrawGameOverTitle(sf::Vector2f _pos, sf::RenderWindow& window);
 };

@@ -23,7 +23,7 @@ int main()
 
 		if (gameOver.isOver)
 		{
-			gameOver.GameOverUpdate(window);
+			gameOver.GameOverUpdate(window,game->score);
 			if (gameOver.playButton.isClicked)
 			{
 				delete game;
