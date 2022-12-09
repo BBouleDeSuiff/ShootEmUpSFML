@@ -62,7 +62,7 @@ Game::Game()
     UI = new UIElements(playerOne, playerTwo, &score);
 }
 
-void Game::UpdateObjects(Event event) 
+void Game::UpdateObjects(Event event)
 {
     planet->Update(deltaTime);
     line->Update(event, deltaTime);
@@ -75,11 +75,11 @@ void Game::UpdateObjects(Event event)
         player->particleSystem->Update(deltaTime);
         player->Update(deltaTime);
     }
-        playerOne->Update(deltaTime);
-        playerTwo->Update(deltaTime);
-        planet->Update(deltaTime);
-        line->Update(event,deltaTime);
-        StartEnemyWaves();
+
+    for (Enemy*& enemy : enemies)
+    {
+        enemy->Update(deltaTime, score);
+    }
 
     std::list<Enemy*>::iterator it = enemies.begin();
     while (it != enemies.end())
@@ -96,7 +96,7 @@ void Game::UpdateObjects(Event event)
     }
 }
 
-void Game::Draw(RenderWindow& window) 
+void Game::Draw(RenderWindow& window)
 {
     planet->AnimateAndDraw(window);
     line->Draw(window);
@@ -121,7 +121,7 @@ void Game::Update(sf::Event event, RenderWindow& window)
     window.clear(sf::Color::Black);
     Draw(window);
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    if (playerOne->life <=0 || playerTwo->life <= 0 /*|| planet->life <= 0*/)
     {
         isOver = true;
     }
