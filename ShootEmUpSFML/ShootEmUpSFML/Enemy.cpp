@@ -32,7 +32,11 @@ void Enemy::Update(float time, int &score)
 		isDead = true;
 		score += this->score;
 	}
-	//else if(collider.CheckCollision)
+	else if (collider.CheckCollision(planet->collider))
+	{
+		isDead = true;
+		planet->isDead = true;
+	}
 }
 
 void Enemy::Draw(RenderWindow& window) {
