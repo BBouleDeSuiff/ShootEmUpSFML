@@ -3,14 +3,16 @@
 #include <iostream>
 #include<cmath>
 #include<list>
-
+#include "Particle.h"
+#include "DeathEnemyParticle.h"
+#include "MovementParticle.h"
 using namespace sf;
 
-struct Particle {
+/*struct Particle {
 	float lifeTime;
 	float elapsedTime = 0;
 	RectangleShape shape;
-};
+};*/
 
 
 class ParticleSystem

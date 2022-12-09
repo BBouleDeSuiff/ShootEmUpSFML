@@ -3,7 +3,11 @@
 
 class MovementParticle : public Particle
 {
-public :
 	sf::RectangleShape shape;
+public :
+	
+	MovementParticle(float lifetime, float startSize, sf::Vector2f position, float playerRotation);
+	void Draw(sf::RenderWindow& window);
+	void SetScale(float newScale);
 };
 

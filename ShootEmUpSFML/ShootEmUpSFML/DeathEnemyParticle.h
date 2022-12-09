@@ -2,7 +2,10 @@
 # include "Particle.h"
 class DeathEnemyParticle : public Particle
 {
+	sf::CircleShape shape;
 	public :
-		sf::CircleShape shape;
+		DeathEnemyParticle(float lifetime, float startSize, sf::Vector2f enemyPosition);
+		void Draw(sf::RenderWindow& window);
+		void SetScale(float newScale);
 };
 
