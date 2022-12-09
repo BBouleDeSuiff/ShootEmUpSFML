@@ -134,8 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assassin.cpp" />
+    <ClCompile Include="Button.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="LineCollider.cpp" />
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
@@ -148,8 +150,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assassin.h" />
+    <ClInclude Include="Button.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameOver.h" />
     <ClInclude Include="LineCollider.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Planet.h" />

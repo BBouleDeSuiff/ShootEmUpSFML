@@ -75,51 +75,45 @@ Game::Game()
     line = new Line(playerOne->position,playerTwo->position);
 	window.create(sf::VideoMode(800, 600), "SFMLMotherHuger");
 }
-void Game::Update()
+void Game::Update(sf::Event& event)
 {
-    // Game loop
-    while (window.isOpen()) {
-        deltaTime = clock.getElapsedTime().asSeconds();
-        clock.restart();
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            //"close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-        playerOne->Update(deltaTime);
-        playerTwo->Update(deltaTime);
-        planet->Update(deltaTime);
-        line->Update(event,deltaTime);
-        StartEnemyWaves();
+    deltaTime = clock.getElapsedTime().asSeconds();
+    clock.restart();
+    playerOne->Update(deltaTime);
+    playerTwo->Update(deltaTime);
+    planet->Update(deltaTime);
+    line->Update(event,deltaTime);
+    StartEnemyWaves();
 
-        for (Enemy* &enemy : enemies)
-        {
-            enemy->Update(deltaTime, score);
-        }
+    for (Enemy* &enemy : enemies)
+    {
+        enemy->Update(deltaTime, score);
+    }
 
-        window.clear(sf::Color::Black);
-        // Whatever I want to draw goes here
-        line->Draw(window);
-        playerOne->Draw(window);
-        playerTwo->Draw(window);
+    window.clear(sf::Color::Black);
+    // Whatever I want to draw goes here
+    line->Draw(window);
+    playerOne->Draw(window);
+    playerTwo->Draw(window);
         
-        planet->AnimateAndDraw(window);
-        DrawEnemies();
-        std::list<Enemy*>::iterator it = enemies.begin();
-        while (it != enemies.end())
+    planet->AnimateAndDraw(window);
+    DrawEnemies();
+    std::list<Enemy*>::iterator it = enemies.begin();
+    while (it != enemies.end())
+    {
+        if ((*it)->isDead)
         {
-            if ((*it)->isDead)
-            {
-                it = enemies.erase(it);
-            }
-            else
-            {
-                it++;
-            }
+            it = enemies.erase(it);
         }
-        window.display();
+        else
+        {
+            it++;
+        }
+    }
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
+    {
+        isOver = true;
     }
 }
 

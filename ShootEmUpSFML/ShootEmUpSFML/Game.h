@@ -23,7 +23,6 @@ class Game
 		float timer = 0;
 
 		Line* line;
-		sf::RenderWindow window;
 		sf::Clock clock;
 
 		void StartEnemyWaves();
@@ -31,10 +30,12 @@ class Game
 
 	public :
 		int score;
+		bool isOver;
+		sf::RenderWindow window;
 
 		Game();
 		~Game();
 
-		void Update();
+		void Update(sf::Event& event);
 };
 
