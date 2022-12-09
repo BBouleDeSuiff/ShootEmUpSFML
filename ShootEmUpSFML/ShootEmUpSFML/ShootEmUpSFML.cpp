@@ -9,7 +9,7 @@ int main()
 {
 	sf::RenderWindow window;
 	Game* game = new Game();
-	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "SFMLMotherHuger");
+	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "The Motherland Calls");
 	GameOver gameOver;
 
 	while (window.isOpen() && !gameOver.quitButton.isClicked)

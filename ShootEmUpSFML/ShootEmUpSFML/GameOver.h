@@ -4,10 +4,10 @@
 
 class GameOver
 {
-public:
-	bool isOver;
-	Button playButton;
-	Button quitButton;
-	GameOver();
-	void GameOverUpdate(sf::RenderWindow& window);
+	public:
+		bool isOver;
+		Button playButton;
+		Button quitButton;
+		GameOver();
+		void GameOverUpdate(sf::RenderWindow& window);
 };
