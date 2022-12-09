@@ -12,7 +12,7 @@ int main()
 	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "SFMLMotherHuger");
 	GameOver gameOver;
 
-	while (window.isOpen() && !gameOver.quit)
+	while (window.isOpen() && !gameOver.quitButton.isClicked)
 	{
 		sf::Event event;
 		while (window.pollEvent(event))
@@ -24,7 +24,7 @@ int main()
 		if (gameOver.isOver)
 		{
 			gameOver.GameOverUpdate(window);
-			if (gameOver.reload)
+			if (gameOver.playButton.isClicked)
 			{
 				delete game;
 				game = new Game();

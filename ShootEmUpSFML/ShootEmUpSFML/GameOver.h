@@ -6,9 +6,8 @@ class GameOver
 {
 public:
 	bool isOver;
-	bool quit;
-	bool reload;
-	Button play;
+	Button playButton;
+	Button quitButton;
 	GameOver();
 	void GameOverUpdate(sf::RenderWindow& window);
 };

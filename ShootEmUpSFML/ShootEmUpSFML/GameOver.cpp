@@ -4,15 +4,14 @@
 
 GameOver::GameOver()
 {
-    play = Button(sf::Vector2f(400,300), sf::Vector2f(200,100),sf::Color::Red,sf::Color::White,24,"Play");
-	reload = false;
+	playButton = Button(sf::Vector2f(400, 300), sf::Vector2f(200, 100), sf::Color::Red, sf::Color::White, 24, "Play");
+	quitButton = Button(sf::Vector2f(400,400), sf::Vector2f(200,100),sf::Color::Blue,sf::Color::White,24,"Quit");
 	isOver = false;
-	quit = false;
 }
 
 void GameOver::GameOverUpdate(sf::RenderWindow& window)
 {
 	window.clear(sf::Color::Black);
-    play.UpdateAndDraw(window);
-    reload = play.isClicked;
+	playButton.UpdateAndDraw(window);
+	quitButton.UpdateAndDraw(window);
 }
