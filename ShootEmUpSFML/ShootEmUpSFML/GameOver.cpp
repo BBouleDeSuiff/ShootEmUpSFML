@@ -6,7 +6,7 @@ GameOver::GameOver()
 {
 	playButton = Button(sf::Vector2f(400, 350), sf::Vector2f(200, 75), sf::Color::Red, sf::Color::White, 32, "Play");
 	quitButton = Button(sf::Vector2f(400,450), sf::Vector2f(200, 75),sf::Color::Blue,sf::Color::White, 32, "Quit");
-	isOver = true;
+	isOver = false;
 }
 
 void GameOver::GameOverUpdate(sf::RenderWindow& window)

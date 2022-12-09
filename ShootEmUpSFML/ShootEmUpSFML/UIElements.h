@@ -3,6 +3,7 @@
 #include <iostream>
 #include<cmath>
 #include "Player.h"
+#include "Line.h"
 using namespace sf;
 
 
@@ -12,6 +13,7 @@ class UIElements
         // Source Variables //
         Player* playerOne;
         Player* playerTwo;
+        Line* line;
         int* score;
 
         // UI variables//
@@ -19,13 +21,12 @@ class UIElements
 
         Text life1;
         Text life2;
-        CircleShape icone1;
-        CircleShape icone2;
+        sf::RectangleShape lineBar;
 
         Text scoreText;
 
     public:
-        UIElements(Player* _playerOne, Player* _playerTwo, int* _score);
+        UIElements(Player* _playerOne, Player* _playerTwo, Line* _line, int* _score);
 
         void Update();
         void Draw(RenderWindow& window);

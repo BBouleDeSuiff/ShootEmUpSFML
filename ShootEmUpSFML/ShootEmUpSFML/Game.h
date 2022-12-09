@@ -17,7 +17,7 @@ class Game
 		Player* playerTwo;
 		std::list<Player*> players;
 		Planet* planet;
-		UIElements* UI;
+		Line* line;
 
 		std::list<Enemy*> enemies;
 		float enemiesNumber = 1; // Number of enemies per wave
@@ -25,7 +25,8 @@ class Game
 		const float spawnMargin = 30; // How far enemies spawn outside of screen
 		float timer = 0;
 
-		Line* line;
+		UIElements* UI;
+
 		sf::Clock clock;
 
 		void SpawnEnemies(std::list<Enemy*>& enemyLists, Player& playerOne, Player& playerTwo, Planet& planet, Line& line, int numberOfEnemies, int spawnMargin, int speed);

@@ -59,7 +59,7 @@ Game::Game()
     players.push_back(playerTwo);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
-    UI = new UIElements(playerOne, playerTwo, &score);
+    UI = new UIElements(playerOne, playerTwo, line, &score);
 }
 
 void Game::UpdateObjects(Event event)
