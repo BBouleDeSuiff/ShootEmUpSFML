@@ -129,9 +129,6 @@ void Game::Update(sf::Event event, RenderWindow& window)
 
 Game::~Game()
 {
-    delete playerOne->particleSystem->particleList;
-    delete playerTwo->particleSystem->particleList;
-
     delete playerOne->particleSystem;
     delete playerTwo->particleSystem;
 

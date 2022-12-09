@@ -25,7 +25,7 @@ class ParticleSystem
 		CircleShape* playerShape;
 
 	public:
-		std::list<Particle>* particleList;
+		std::list<Particle> particleList;
 		Vector2f origin;
 		bool isEnabled;
 
