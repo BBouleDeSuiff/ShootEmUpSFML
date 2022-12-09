@@ -135,11 +135,14 @@
   <ItemGroup>
     <ClCompile Include="Assassin.cpp" />
     <ClCompile Include="Button.cpp" />
+    <ClCompile Include="DeathEnemyParticle.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameOver.cpp" />
     <ClCompile Include="LineCollider.cpp" />
+    <ClCompile Include="MovementParticle.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Planet.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -152,10 +155,13 @@
   <ItemGroup>
     <ClInclude Include="Assassin.h" />
     <ClInclude Include="Button.h" />
+    <ClInclude Include="DeathEnemyParticle.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameOver.h" />
     <ClInclude Include="LineCollider.h" />
+    <ClInclude Include="MovementParticle.h" />
+    <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Planet.h" />
     <ClInclude Include="Soldier.h" />

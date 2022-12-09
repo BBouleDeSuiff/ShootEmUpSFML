@@ -12,8 +12,6 @@ using namespace std;
 
 ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, CircleShape* _playerShape) {
 
-	particleList = new std::list<Particle> ;
-
 	spawnTimer = 0;
 	spawnDurationInterval = creationDurationInterval;
 	minLifeTime = minParticleLifeTime;
@@ -41,7 +39,7 @@ void ParticleSystem::AddParticle(float lifetime) {
 
 	particle.shape.setPosition(x, y);
 
-	(*particleList).push_back(particle);
+	particleList.push_back(particle);
 }
 
 void ParticleSystem::AddEnemyDeathParticles(float lifetime,sf::Vector2f scale, sf::Vector2f position)
@@ -54,13 +52,13 @@ void ParticleSystem::AddEnemyDeathParticles(float lifetime,sf::Vector2f scale, s
 	particle.shape.setOutlineColor(Color::Cyan);
 
 	particle.shape.setPosition(position.x,position.y);
-	(*particleList).push_back(particle);
+	particleList.push_back(particle);
 }
 
 
 
 void ParticleSystem::Update(float deltaTime) {
-	std::list<Particle>::iterator it = (*particleList).begin();
+	std::list<Particle>::iterator it = particleList.begin();
 	this->spawnTimer += deltaTime;
 	const float PI = 3.14159265;
 
@@ -75,13 +73,13 @@ void ParticleSystem::Update(float deltaTime) {
 	}
 
 	// Delete particles // 
-	it = (*particleList).begin();
-	while (it != (*particleList).end()) {
+	it = particleList.begin();
+	while (it != particleList.end()) {
 		float scale = sin(PI * it->elapsedTime / it->lifeTime);
 		it->shape.setScale(scale, scale);
 		it->elapsedTime += deltaTime;
 		if (it->elapsedTime > it->lifeTime) {
-			it = (*particleList).erase(it);
+			it = particleList.erase(it);
 			continue;
 		}
 		it++;
@@ -90,11 +88,11 @@ void ParticleSystem::Update(float deltaTime) {
 
 void ParticleSystem::Clear() {
 	spawnTimer = 0;
-	(*particleList).clear();
+	particleList.clear();
 }
 
 void ParticleSystem::Draw(RenderWindow& window) {
-	for (Particle particle : (*particleList))
+	for (Particle particle : particleList)
 	{
 		window.draw(particle.shape);
 	}

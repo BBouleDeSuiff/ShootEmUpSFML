@@ -4,10 +4,10 @@
 
 GameOver::GameOver()
 {
-	playButton = Button(sf::Vector2f(400, 300), sf::Vector2f(200, 100), sf::Color::Red, sf::Color::White, 24, "Play");
-	quitButton = Button(sf::Vector2f(400,400), sf::Vector2f(200,100),sf::Color::Blue,sf::Color::White,24,"Quit");
-	font.loadFromFile("../Font.otf");
+	playButton = Button(sf::Vector2f(400, 350), sf::Vector2f(200, 75), sf::Color::Red, sf::Color::White, 32, "Play");
+	quitButton = Button(sf::Vector2f(400,450), sf::Vector2f(200, 75),sf::Color::Blue,sf::Color::White, 32, "Quit");
 	isOver = false;
+	font.loadFromFile("retroGaming.ttf");
 }
 
 void GameOver::GameOverUpdate(sf::RenderWindow& window,int _score)
@@ -16,7 +16,8 @@ void GameOver::GameOverUpdate(sf::RenderWindow& window,int _score)
 	window.clear(sf::Color::Black);
 	playButton.UpdateAndDraw(window);
 	quitButton.UpdateAndDraw(window);
-	DrawScore(sf::Vector2f(0,0),window);
+	DrawScore(sf::Vector2f(300, 205),window);
+	DrawGameOverTitle(sf::Vector2f(260, 150), window);
 }
 
 void GameOver::DrawScore(sf::Vector2f _pos, sf::RenderWindow& window)
@@ -28,5 +29,15 @@ void GameOver::DrawScore(sf::Vector2f _pos, sf::RenderWindow& window)
 	scoreTxt.setFillColor(sf::Color::White);
 
 	window.draw(scoreTxt);
+}
 
+void GameOver::DrawGameOverTitle(sf::Vector2f _pos, sf::RenderWindow& window)
+{
+	gameOverTitle.setPosition(_pos);
+	gameOverTitle.setFont(font);
+	gameOverTitle.setString("GameOver");
+	gameOverTitle.setCharacterSize(46);
+	gameOverTitle.setFillColor(sf::Color::White);
+
+	window.draw(gameOverTitle);
 }
