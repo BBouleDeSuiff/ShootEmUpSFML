@@ -8,9 +8,6 @@ Line::Line(sf::Vector2f& playerOne, sf::Vector2f& playerTwo) : collider(playerOn
 	this->playerTwo = &playerTwo;
 	line[0] = sf::Vertex(playerOne);
 	line[1] = sf::Vertex(playerTwo);
-	healthBar.setSize(sf::Vector2f(200,30));
-	healthBar.setPosition(sf::Vector2f(10,10));
-	healthBar.setFillColor(sf::Color::Green);
 }
 void Line::Update(sf::Event& event, float time)
 {
@@ -38,7 +35,6 @@ void Line::Update(sf::Event& event, float time)
 	if (!isActive && stamina < maxStamina && !(sf::Keyboard::isKeyPressed(sf::Keyboard::Space) || sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))) {
 		stamina += time * 2;
 	}
-	healthBar.setSize(sf::Vector2f(200 * stamina /maxStamina, 30));
 }
 
 void Line::Draw(sf::RenderWindow& window)
@@ -46,6 +42,12 @@ void Line::Draw(sf::RenderWindow& window)
 	if (isActive) {
 		window.draw(line, 2, sf::Lines);
 	}
-	window.draw(healthBar);
+}
+
+float Line::GetStamina() {
+	return stamina;
+}
+float Line::GetMaxStamina() {
+	return maxStamina;
 }
 

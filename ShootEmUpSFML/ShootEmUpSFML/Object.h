@@ -8,14 +8,14 @@ using namespace sf;
 
 class Object
 {
-    public:
-        bool isDead;
-
-        Vector2f position;
-        Vector2f scale;
+    protected:
         float angle;
         float speed;
+    public:
+        Vector2f position;
+        Vector2f scale;
         SphereCollider collider;
+        bool isDead;
 
         Object(Vector2f _position, Vector2f _scale, float _angle, float _speed);
         Object(Vector2f _position, Vector2f _scale); // for non-moving objects

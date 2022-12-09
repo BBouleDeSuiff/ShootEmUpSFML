@@ -9,7 +9,7 @@ int main()
 {
 	sf::RenderWindow window;
 	Game* game = new Game();
-	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "SFMLMotherHuger");
+	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "The Motherland Calls");
 	GameOver gameOver;
 
 	while (window.isOpen() && !gameOver.quitButton.isClicked)
@@ -23,7 +23,7 @@ int main()
 
 		if (gameOver.isOver)
 		{
-			gameOver.GameOverUpdate(window);
+			gameOver.GameOverUpdate(window,game->score);
 			if (gameOver.playButton.isClicked)
 			{
 				delete game;

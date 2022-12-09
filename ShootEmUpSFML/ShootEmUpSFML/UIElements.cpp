@@ -1,6 +1,6 @@
 #include "UIElements.h"
 
-UIElements::UIElements(Player* _playerOne, Player* _playerTwo, int* _score) {
+UIElements::UIElements(Player* _playerOne, Player* _playerTwo, Line* _line, int* _score) {
 	playerOne = _playerOne;
 	playerTwo = _playerTwo;
 	score = _score;
@@ -21,6 +21,12 @@ UIElements::UIElements(Player* _playerOne, Player* _playerTwo, int* _score) {
     scoreText.setPosition(20, 50);
     life1.setPosition(40, 530);
     life2.setPosition(750, 530);
+
+    lineBar.setSize(sf::Vector2f(200, 30));
+    lineBar.setPosition(sf::Vector2f(10, 10));
+    lineBar.setFillColor(sf::Color::Green);
+
+    line = _line;
 }
 
 void UIElements::Update()
@@ -30,6 +36,7 @@ void UIElements::Update()
     if (playerTwo != nullptr)
         life2.setString(std::to_string(playerTwo->life));
     scoreText.setString(std::to_string((*score)));
+    lineBar.setSize(sf::Vector2f(200 * line->GetStamina() / line->GetMaxStamina(), 30));
 }
 
 void UIElements::Draw(RenderWindow& window)
@@ -37,4 +44,5 @@ void UIElements::Draw(RenderWindow& window)
     window.draw(life1);
     window.draw(life2);
     window.draw(scoreText);
+    window.draw(lineBar);
 }
