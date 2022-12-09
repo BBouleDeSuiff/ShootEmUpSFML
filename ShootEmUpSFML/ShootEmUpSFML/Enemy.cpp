@@ -9,12 +9,6 @@ Enemy::Enemy(Vector2f _position, Vector2f _scale, float _angle, float _speed, Pl
 	line = &_line;
 }
 
-void Normalize(Vector2f& vector) {
-	float norm = std::sqrt(vector.x * vector.x + vector.y * vector.y);
-	if(norm != 0)
-		vector = vector / norm;
-}
-
 void Enemy::Update(float time, int &score)
 {
 	//Change position here

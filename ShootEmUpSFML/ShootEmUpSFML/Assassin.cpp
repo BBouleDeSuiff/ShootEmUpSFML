@@ -35,5 +35,5 @@ void Assassin::ResetTarget() {
 
 void Assassin::Update(float time, int& score) {
 	ResetTarget();
-	Enemy::Update(time, score);
+	this->Enemy::Update(time, score);
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include<cmath>
+#include <cmath>
 #include "SphereCollider.h"
 using namespace sf;
 
@@ -17,11 +17,12 @@ class Object
         float speed;
         SphereCollider collider;
 
-        virtual void Update(float time);
-
         Object(Vector2f _position, Vector2f _scale, float _angle, float _speed);
         Object(Vector2f _position, Vector2f _scale); // for non-moving objects
 
+        virtual void Update(float time);
+
+        void Normalize(Vector2f& vector);
         virtual void Draw(RenderWindow& window);
 };
 
