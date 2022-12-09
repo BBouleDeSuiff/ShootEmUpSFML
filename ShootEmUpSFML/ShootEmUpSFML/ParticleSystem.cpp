@@ -22,14 +22,16 @@ ParticleSystem::ParticleSystem(float creationDurationInterval, float minParticle
 	spawnRadius = _spawnRadius;
 	startSize = _startSize;
 	playerShape = _playerShape;
+	isEnabled = true;
 }
 void ParticleSystem::AddParticle(float lifetime) {
 	Particle particle = { lifetime };
 
-	//particle.shape.setRadius(10);
-	particle.shape.setSize(Vector2f(1 * startSize, 10 * startSize));
+	particle.shape.setSize(Vector2f(1* startSize, 1 * startSize));
 	particle.shape.setOrigin(10, 10);
 	particle.shape.setRotation(playerShape->getRotation());
+	particle.shape.setOutlineThickness(1.5f);
+	particle.shape.setFillColor(Color::Black);
 
 	const float PI = 3.14159265;
 	float angle = PI * 2.0f * (float)rand() / RAND_MAX;
@@ -59,11 +61,18 @@ void ParticleSystem::Update(float deltaTime) {
 	std::list<Particle>::iterator it = (*particleList).begin();
 	this->spawnTimer += deltaTime;
 	const float PI = 3.14159265;
-	if (spawnTimer >= spawnDurationInterval) {
-		float lifeTime = minLifeTime + (maxLifeTime - minLifeTime) * (float)rand() / RAND_MAX;
-		AddParticle(lifeTime);
-		spawnTimer = 0;
+
+	// Add particles // 
+
+	if (isEnabled) {
+		if (spawnTimer >= spawnDurationInterval) {
+			float lifeTime = minLifeTime + (maxLifeTime - minLifeTime) * (float)rand() / RAND_MAX;
+			AddParticle(lifeTime);
+			spawnTimer = 0;
+		}
 	}
+
+	// Delete particles // 
 	it = (*particleList).begin();
 	while (it != (*particleList).end()) {
 		float scale = sin(PI * it->elapsedTime / it->lifeTime);
@@ -76,10 +85,12 @@ void ParticleSystem::Update(float deltaTime) {
 		it++;
 	}
 }
+
 void ParticleSystem::Clear() {
 	spawnTimer = 0;
 	(*particleList).clear();
 }
+
 void ParticleSystem::Draw(RenderWindow& window) {
 	for (Particle particle : (*particleList))
 	{

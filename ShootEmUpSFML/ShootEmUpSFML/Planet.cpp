@@ -10,6 +10,7 @@ Planet::Planet(Vector2f _position, Vector2f _scale, float _rotationSpeed):Object
 
     planetShape.setPosition(_position);
     planetShape.setTexture(&texture);
+    planetShape.setOutlineThickness(3);
     planetShape.setOrigin(1 * _scale.x, 1 * _scale.x); //Set anchor point to planet's center
 }
 

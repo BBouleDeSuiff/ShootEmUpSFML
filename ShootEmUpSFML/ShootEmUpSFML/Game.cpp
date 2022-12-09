@@ -47,24 +47,71 @@ void Game::StartEnemyWaves() {
     }
 }
 
-void Game::DrawEnemies() {
-    for (Enemy* enemy : enemies)
-    {
-        enemy->Draw(window);
-    }
-}
-
 Game::Game()
 {
     srand(time(NULL));
 	score = 0;
     deltaTime = clock.getElapsedTime().asSeconds();
-    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.2f, 0.25f, 1.f, 30, 2);
-	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.2f, 0.25f, 1.f, 30, 2);
+    playerOne = new Player(sf::Vector2f(400, 200), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER1, Color::Blue, 0.15f, 0.25f, 1.f, 20, 10);
+	playerTwo = new Player(sf::Vector2f(500, 300), sf::Vector2f(15, 15), 0, 200, 1, PlayerNumber::PLAYER2, Color::Red, 0.15f, 0.25f, 1.f, 20, 10);
+    players.push_back(playerOne);
+    players.push_back(playerTwo);
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
+    UI = new UIElements(playerOne, playerTwo, &score);
 	window.create(sf::VideoMode(windowWidth, windowHeight), "SFMLMotherHuger");
 }
+
+void Game::UpdateObjects(Event event) 
+{
+    planet->Update(deltaTime);
+    line->Update(event, deltaTime);
+    UI->Update();
+
+    StartEnemyWaves();
+
+    for (Player*& player : players)
+    {
+        player->particleSystem->Update(deltaTime);
+        player->Update(deltaTime);
+    }
+
+    for (Enemy*& enemy : enemies)
+    {
+        enemy->Update(deltaTime, score);
+    }
+
+    std::list<Enemy*>::iterator it = enemies.begin();
+    while (it != enemies.end())
+    {
+        if ((*it)->isDead)
+        {
+            it = enemies.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+}
+
+void Game::Draw(RenderWindow& window) 
+{
+    planet->AnimateAndDraw(window);
+    line->Draw(window);
+
+    for (Player*& player : players)
+    {
+        player->particleSystem->Draw(window);
+        player->Draw(window);
+    }
+    for (Enemy* enemy : enemies)
+    {
+        enemy->Draw(window);
+    }
+    UI->Draw(window);
+}
+
 void Game::Update()
 {
     // Game loop
@@ -79,50 +126,25 @@ void Game::Update()
                 window.close();
         }
 
-        playerOne->Update(deltaTime);
-        playerTwo->Update(deltaTime);
-        planet->Update(deltaTime);
-        line->Update(event,deltaTime);
-        playerOne->particleSystem->Update(deltaTime);
-        playerTwo->particleSystem->Update(deltaTime);
-
-        StartEnemyWaves();
-
-        for (Enemy* &enemy : enemies)
-        {
-            enemy->Update(deltaTime, score);
-        }
+        UpdateObjects(event);
 
         window.clear(sf::Color::Black);
 
         // Whatever I want to draw goes here
-        line->Draw(window);
-        playerOne->particleSystem->Draw(window);
-        playerTwo->particleSystem->Draw(window);
-        playerOne->Draw(window);
-        playerTwo->Draw(window);
-        planet->AnimateAndDraw(window);
-        DrawEnemies();
+        Draw(window);
 
-        std::list<Enemy*>::iterator it = enemies.begin();
-        while (it != enemies.end())
-        {
-            if ((*it)->isDead)
-            {
-                playerOne->particleSystem->AddEnemyDeathParticles(1, (*it)->scale, (*it)->position);
-                it = enemies.erase(it);
-            }
-            else
-            {
-                it++;
-            }
-        }
         window.display();
     }
 }
 
 Game::~Game()
 {
+    delete playerOne->particleSystem->particleList;
+    delete playerTwo->particleSystem->particleList;
+
+    delete playerOne->particleSystem;
+    delete playerTwo->particleSystem;
+
     delete playerOne;
     delete playerTwo;
     delete planet;

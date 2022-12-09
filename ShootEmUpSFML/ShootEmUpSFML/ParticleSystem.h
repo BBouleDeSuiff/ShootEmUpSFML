@@ -15,16 +15,19 @@ struct Particle {
 
 class ParticleSystem
 {
-	public:
-		std::list<Particle> *particleList;
+	private:
 		float spawnDurationInterval;
 		float spawnTimer = 0;
 		float minLifeTime;
 		float maxLifeTime;
-		Vector2f origin;
 		float spawnRadius;
 		float startSize;
-		CircleShape *playerShape;
+		CircleShape* playerShape;
+
+	public:
+		std::list<Particle>* particleList;
+		Vector2f origin;
+		bool isEnabled;
 
 		ParticleSystem(float creationDurationInterval, float minParticleLifeTime, float maxParticleLifeTime, Vector2f _origin, float _spawnRadius, float _startSize, CircleShape* playerShape);
 
