@@ -121,7 +121,7 @@ void Game::Update(sf::Event event, RenderWindow& window)
     window.clear(sf::Color::Black);
     Draw(window);
 
-    if (playerOne->life <=0 || playerTwo->life <= 0 /*|| planet->life <= 0*/)
+    if (playerOne->life <=0 || playerTwo->life <= 0 || planet->isDead)
     {
         isOver = true;
     }

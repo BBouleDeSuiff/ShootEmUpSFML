@@ -6,7 +6,7 @@ Button::Button(){}
 Button::Button(sf::Vector2f _pos, sf::Vector2f _size, sf::Color _color, sf::Color _textColor, int _charSize, std::string _text)
 {
 	isClicked = false;
-	font.loadFromFile("../Font.otf");
+	font.loadFromFile("retroGaming.ttf");
 	color = _color;
 	colorHover = sf::Color(_color.r + _color.r / 255 * 100, _color.g + _color.g / 255 * 100, _color.b + _color.b / 255 * 100);
 	textColor = _textColor;
@@ -23,15 +23,18 @@ void Button::UpdateAndDraw(sf::RenderWindow &window)
 	shape.setSize(size);
 	shape.setFillColor(color);
 
-	text.setPosition(pos);
+
+	text.setOrigin(text.getGlobalBounds().width / 2, text.getGlobalBounds().height / 2);
+	text.setPosition(sf::Vector2f(pos.x +size.x/2, pos.y + size.y / 2));
 	text.setFont(font);
 	text.setString(textString);
 	text.setCharacterSize(charSize);
 	text.setFillColor(textColor);
-
 	sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 	if (mousePos.x < pos.x + size.x && mousePos.x > pos.x && mousePos.y < pos.y + size.y && mousePos.y > pos.y)
 	{
+	
+
 		text.setFillColor(textColorHover);
 		shape.setFillColor(colorHover);
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))

@@ -4,9 +4,9 @@
 
 GameOver::GameOver()
 {
-	playButton = Button(sf::Vector2f(400, 300), sf::Vector2f(200, 100), sf::Color::Red, sf::Color::White, 24, "Play");
-	quitButton = Button(sf::Vector2f(400,400), sf::Vector2f(200,100),sf::Color::Blue,sf::Color::White,24,"Quit");
-	isOver = false;
+	playButton = Button(sf::Vector2f(400, 350), sf::Vector2f(200, 75), sf::Color::Red, sf::Color::White, 32, "Play");
+	quitButton = Button(sf::Vector2f(400,450), sf::Vector2f(200, 75),sf::Color::Blue,sf::Color::White, 32, "Quit");
+	isOver = true;
 }
 
 void GameOver::GameOverUpdate(sf::RenderWindow& window)
