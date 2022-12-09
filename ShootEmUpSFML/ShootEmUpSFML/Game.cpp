@@ -49,6 +49,7 @@ void Game::StartEnemyWaves() {
 
 Game::Game()
 {
+    isOver = false;
     srand(time(NULL));
 	score = 0;
     deltaTime = clock.getElapsedTime().asSeconds();
@@ -59,7 +60,6 @@ Game::Game()
     planet = new Planet(sf::Vector2f(400, 300), sf::Vector2f(30, 30), 25);
     line = new Line(playerOne->position,playerTwo->position);
     UI = new UIElements(playerOne, playerTwo, &score);
-	window.create(sf::VideoMode(windowWidth, windowHeight), "SFMLMotherHuger");
 }
 
 void Game::UpdateObjects(Event event) 
@@ -113,29 +113,13 @@ void Game::Draw(RenderWindow& window)
     UI->Draw(window);
 }
 
-void Game::Update()
+void Game::Update(sf::Event event, RenderWindow& window)
 {
-    // Game loop
-    while (window.isOpen()) {
-        deltaTime = clock.getElapsedTime().asSeconds();
-        clock.restart();
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            //"close requested" event: we close the window
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        UpdateObjects(event);
-
-        window.clear(sf::Color::Black);
-
-        // Whatever I want to draw goes here
-        Draw(window);
-
-        window.display();
-    }
+    deltaTime = clock.getElapsedTime().asSeconds();
+    clock.restart();
+    UpdateObjects(event);
+    window.clear(sf::Color::Black);
+    Draw(window);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::M))
     {

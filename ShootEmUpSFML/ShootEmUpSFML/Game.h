@@ -12,8 +12,6 @@
 class Game
 {
 	private :
-		int windowWidth = 800;
-		int windowHeight = 600;
 		float deltaTime; //Delta time between two frames
 		Player* playerOne;
 		Player* playerTwo;
@@ -42,10 +40,9 @@ class Game
 	public :
 		int score;
 		bool isOver;
-		sf::RenderWindow window;
-
+		int windowWidth = 800;
+		int windowHeight = 600;
 		Game();
 		~Game();
-
-		void Update();
+		void Update(sf::Event event, RenderWindow& window);
 };

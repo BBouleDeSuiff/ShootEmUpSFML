@@ -7,21 +7,23 @@
 
 int main()
 {
+	sf::RenderWindow window;
 	Game* game = new Game();
+	window.create(sf::VideoMode(game->windowWidth, game->windowHeight), "SFMLMotherHuger");
 	GameOver gameOver;
 
-	while (game->window.isOpen() && !gameOver.quit)
+	while (window.isOpen() && !gameOver.quit)
 	{
 		sf::Event event;
-		while (game->window.pollEvent(event))
+		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				game->window.close();
+				window.close();
 		}
 
 		if (gameOver.isOver)
 		{
-			gameOver.GameOverUpdate(game->window);
+			gameOver.GameOverUpdate(window);
 			if (gameOver.reload)
 			{
 				delete game;
@@ -31,11 +33,9 @@ int main()
 		}
 		else
 		{
-			game->Update(event);
+			game->Update(event,window);
 			gameOver.isOver = game->isOver;
 		}
-		game->window.display();
+		window.display();
 	}
-
-
 }
